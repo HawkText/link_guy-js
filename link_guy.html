@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    <style type="text/css">
+        body{
+            background-color: black;
+            margin: 0px;
+            font-size: 0;
+        }
+
+
+        div.row div{
+            width:20px;
+            height: 20px;
+            display:inline-block;
+        }
+        
+
+        div.brick{
+            background-color: blue;
+        }
+
+        div.empty{
+            background-position: center;
+        }
+        
+        div.purple_rupee{
+            background: url("images/purple_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        div#link_guy{
+            background: url("images/link_walk_down.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width:20px;
+            height: 20px;
+            position: absolute;
+        }
+
+        div#score{
+            border:1px solid white;
+            width: 100px;
+            height: 100px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(161, 190, 29);
+            font-size: 20px;
+            outline-color: blue;
+            position: absolute;
+            top: 0px;
+            left: 260px;
+        }
+
+    </style>
+    
+    </head>
+    <body>
+        <div id="container">
+            <div id="world"></div>
+            <div id="link_guy"></div>
+            <div id="score">012312312312312</div>
+        </div>
+        <script>
+
+            var world = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var score = 0;
+
+            var link_guy = {
+                x: 1,
+                y: 1,
+
+            };
+
+
+            function displayWorld(){
+                var output ='';
+                for(var i=0; i<world.length; i++){
+                    output += "\n<div class='row'>\n";
+                    for(var j=0; j<world[i].length; j++){
+                        if(world[i][j] == 2)
+                            output +="<div class='purple_rupee'></div>";
+                        else if(world[i][j] == 1)
+                            output += "<div class='brick'></div>";
+                        if(world[i][j] == 0)
+                            output +="<div class='empty'></div>";
+                    }
+                    output +="\n</div>";
+                }
+                console.log(output);
+                document.getElementById('world').innerHTML = output;
+            }
+            function displayLink_guy(){
+                document.getElementById('link_guy').style.top = link_guy.y*20 + "px"
+                document.getElementById('link_guy').style.left = link_guy.x*20 + "px"
+            }
+            function displayScore(){
+                document.getElementById('score').innerHTML = score;
+            }
+
+            displayWorld();
+            displayLink_guy();
+            displayScore();
+            
+            document.onkeydown = function(e){
+                if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] != 1){
+                    link_guy.x--;
+                }
+                else if(e.keyCode == 39 && world[link_guy.y][link_guy.x+1] != 1){
+                    link_guy.x++;
+                }
+                else if(e.keyCode == 38 && world[link_guy.x][link_guy.y-1] != 1){
+                    link_guy.y--;
+                }
+                //fix this 
+                else if(e.keyCode == 40 && world[link_guy.x][link_guy.y] != 1){
+                    link_guy.y++;
+                }
+
+                if(world[link_guy.y][link_guy.x] == 2){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=10;
+                    displayWorld();
+                    displayScore();
+                }
+
+                
+                displayLink_guy();
+            }
+
+        </script>
+
+    </body>
+</html>
