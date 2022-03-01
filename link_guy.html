@@ -14,8 +14,8 @@
 
 
         div.row div{
-            width:20px;
-            height: 20px;
+            width:60px;
+            height: 60px;
             display:inline-block;
         }
         
@@ -40,22 +40,21 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            width:20px;
-            height: 20px;
+            width: 60px;
+            height: 60px;
             position: absolute;
         }
 
         div#score{
             border:1px solid white;
-            width: 100px;
-            height: 100px;
+            width: 58px;
+            height: 58px;
             color: rgb(161, 20, 32);
             background-color: rgb(161, 190, 29);
-            font-size: 20px;
+            font-size: 30px;
             outline-color: blue;
             position: absolute;
             top: 0px;
-            left: 260px;
         }
 
     </style>
@@ -65,7 +64,7 @@
         <div id="container">
             <div id="world"></div>
             <div id="link_guy"></div>
-            <div id="score">012312312312312</div>
+            <div id="score">Yum</div>
         </div>
         <script>
 
@@ -110,8 +109,8 @@
                 document.getElementById('world').innerHTML = output;
             }
             function displayLink_guy(){
-                document.getElementById('link_guy').style.top = link_guy.y*20 + "px"
-                document.getElementById('link_guy').style.left = link_guy.x*20 + "px"
+                document.getElementById('link_guy').style.top = link_guy.y*60 + "px"
+                document.getElementById('link_guy').style.left = link_guy.x*60 + "px"
             }
             function displayScore(){
                 document.getElementById('score').innerHTML = score;
