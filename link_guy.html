@@ -19,7 +19,16 @@
             display:inline-block;
         }
         
+        div.stairs{
+            background: url("images/downstairs.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 60px;
+            height: 60px;
+            position: absolute;
 
+        }
         div.brick{
             background-color: blue;
         }
@@ -72,10 +81,10 @@
             var world = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,5],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
@@ -107,7 +116,7 @@
             function displayWorld(){
                 var output ='';
                 for(var i=0; i<world.length; i++){
-                    output += "\n<div class='row'>\n";
+                    output += "<div class='row'>";
                     for(var j=0; j<world[i].length; j++){
                         if(world[i][j] == 2)
                             output +="<div class='purple_rupee'></div>";
@@ -115,12 +124,31 @@
                             output += "<div class='brick'></div>";
                         if(world[i][j] == 0)
                             output +="<div class='empty'></div>";
+                        else if(world[i][j] == 5)
+                            output += "<div class='stairs'></div>";
                     }
                     output +="\n</div>";
                 }
-                console.log(output);
                 document.getElementById('world').innerHTML = output;
             }
+
+            function displayWorld2(){
+                var output ='';
+                for(var i=0; i<world2.length; i++){
+                    output += "<div class='row'>";
+                    for(var j=0; j<world2[i].length; j++){
+                        if(world2[i][j] == 2)
+                            output +="<div class='purple_rupee'></div>";
+                        else if(world2[i][j] == 1)
+                            output += "<div class='brick'></div>";
+                        if(world2[i][j] == 0)
+                            output +="<div class='empty'></div>";
+                    }
+                    output +="\n</div>";
+                }
+                document.getElementById('world2').innerHTML = output;
+            }
+
             function displayLink_guy(){
                 document.getElementById('link_guy').style.top = link_guy.y*60 + "px"
                 document.getElementById('link_guy').style.left = link_guy.x*60 + "px"
@@ -128,7 +156,7 @@
             function displayScore(){
                 document.getElementById('score').innerHTML = score;
             }
-
+            
             displayWorld();
             displayLink_guy();
             displayScore();
@@ -153,7 +181,10 @@
                 }
 
                 if(world[link_guy.y][link_guy.x] == 5){
-                    location.reload(world2);
+                    //remove world 1 and display world 2 (display is done)
+                    const myNode = document.getElementById("world");
+                            myNode.innerHTML = '';
+                    displayWorld2();
                 }
                 
                 if(world[link_guy.y][link_guy.x] == 2){
