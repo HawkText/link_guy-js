@@ -81,7 +81,7 @@
             var world = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,5],
+                [1,2,2,2,2,2,2,2,2,2,5,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
@@ -122,7 +122,7 @@
                             output +="<div class='purple_rupee'></div>";
                         else if(world[i][j] == 1)
                             output += "<div class='brick'></div>";
-                        if(world[i][j] == 0)
+                        else if(world[i][j] == 0)
                             output +="<div class='empty'></div>";
                         else if(world[i][j] == 5)
                             output += "<div class='stairs'></div>";
@@ -130,23 +130,6 @@
                     output +="\n</div>";
                 }
                 document.getElementById('world').innerHTML = output;
-            }
-
-            function displayWorld2(){
-                var output ='';
-                for(var i=0; i<world2.length; i++){
-                    output += "<div class='row'>";
-                    for(var j=0; j<world2[i].length; j++){
-                        if(world2[i][j] == 2)
-                            output +="<div class='purple_rupee'></div>";
-                        else if(world2[i][j] == 1)
-                            output += "<div class='brick'></div>";
-                        if(world2[i][j] == 0)
-                            output +="<div class='empty'></div>";
-                    }
-                    output +="\n</div>";
-                }
-                document.getElementById('world2').innerHTML = output;
             }
 
             function displayLink_guy(){
@@ -181,10 +164,8 @@
                 }
 
                 if(world[link_guy.y][link_guy.x] == 5){
-                    //remove world 1 and display world 2 (display is done)
-                    const myNode = document.getElementById("world");
-                            myNode.innerHTML = '';
-                    displayWorld2();
+                    world.length = 0;                 
+                    world.push.apply(world, world2);
                 }
                 
                 if(world[link_guy.y][link_guy.x] == 2){
