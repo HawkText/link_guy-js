@@ -14,8 +14,8 @@
 
 
         div.row div{
-            width:60px;
-            height: 60px;
+            width:27px;
+            height: 27px;
             display:inline-block;
         }
         
@@ -40,21 +40,22 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            width: 60px;
-            height: 60px;
+            width: 27px;
+            height: 27px;
             position: absolute;
         }
 
         div#score{
             border:1px solid white;
-            width: 58px;
-            height: 58px;
+            width: 35px;
+            height: 25px;
             color: rgb(161, 20, 32);
             background-color: rgb(161, 190, 29);
-            font-size: 30px;
+            font-size: 20px;
             outline-color: blue;
             position: absolute;
             top: 0px;
+            left: 158px;
         }
 
     </style>
@@ -63,27 +64,12 @@
     <body>
         <div id="container">
             <div id="world"></div>
-            <div id="world2"></div>
             <div id="link_guy"></div>
             <div id="score">Yum</div>
         </div>
         <script>
 
             var world = [
-                [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,5],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,1,1,1,1,1,1,1,1,1,1,1,1]
-            ];
-
-            var world2 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
@@ -102,7 +88,9 @@
             var link_guy = {
                 x: 1,
                 y: 1,
+
             };
+
 
             function displayWorld(){
                 var output ='';
@@ -122,8 +110,8 @@
                 document.getElementById('world').innerHTML = output;
             }
             function displayLink_guy(){
-                document.getElementById('link_guy').style.top = link_guy.y*60 + "px"
-                document.getElementById('link_guy').style.left = link_guy.x*60 + "px"
+                document.getElementById('link_guy').style.top = link_guy.y*27 + "px"
+                document.getElementById('link_guy').style.left = link_guy.x*27 + "px"
             }
             function displayScore(){
                 document.getElementById('score').innerHTML = score;
@@ -152,16 +140,14 @@
                     link_guy.y++;
                 }
 
-                if(world[link_guy.y][link_guy.x] == 5){
-                    location.reload(world2);
-                }
-                
                 if(world[link_guy.y][link_guy.x] == 2){
                     world[link_guy.y][link_guy.x] = 0;
                     score+=10;
                     displayWorld();
                     displayScore();
                 }
+
+                
                 displayLink_guy();
             }
 
