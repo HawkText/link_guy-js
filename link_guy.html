@@ -26,7 +26,7 @@
             background-size: cover;
             width: 60px;
             height: 60px;
-            position: absolute;
+            
 
         }
         div.brick{
@@ -35,6 +35,15 @@
 
         div.empty{
             background-position: center;
+        }
+
+        div.leftwall{
+            background: url("images/sprites_galore.png");
+            background-position: -240px -315px;
+            width: 60px;
+            height: 60px;
+            
+
         }
         
         div.purple_rupee{
@@ -80,7 +89,7 @@
 
             var world = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [10,0,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,5,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
@@ -93,6 +102,20 @@
             ];
 
             var world2 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,6,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world3 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
@@ -118,14 +141,18 @@
                 for(var i=0; i<world.length; i++){
                     output += "<div class='row'>";
                     for(var j=0; j<world[i].length; j++){
-                        if(world[i][j] == 2)
-                            output +="<div class='purple_rupee'></div>";
-                        else if(world[i][j] == 1)
+                        if(world[i][j] == 1)
                             output += "<div class='brick'></div>";
-                        else if(world[i][j] == 0)
-                            output +="<div class='empty'></div>";
+                        else  if(world[i][j] == 2)
+                            output +="<div class='purple_rupee'></div>";
                         else if(world[i][j] == 5)
                             output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 6)
+                            output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 0)
+                            output +="<div class='empty'></div>";
+                            else if(world[i][j] == 10)
+                            output +="<div class='leftwall'></div>";
                     }
                     output +="\n</div>";
                 }
@@ -166,6 +193,12 @@
                 if(world[link_guy.y][link_guy.x] == 5){
                     world.length = 0;                 
                     world.push.apply(world, world2);
+
+                }
+
+                if(world[link_guy.y][link_guy.x] == 6){
+                    world.length = 0;                 
+                    world.push.apply(world, world3);
                 }
                 
                 if(world[link_guy.y][link_guy.x] == 2){
@@ -175,6 +208,7 @@
                     displayScore();
                 }
                 displayLink_guy();
+                
             }
 
         </script>
