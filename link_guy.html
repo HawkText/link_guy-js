@@ -197,19 +197,19 @@
 		for (var i = 0; i<bullets.length; i++)
 		{
 			bullets[i].y -= 5;
-			if (bullets[i].y <= 0)
+			if (bullets[i].y <= 1)
 			{
 				removeItem(bullets, i);
 			}
 		}
 	}
-	function removeItem(arr, num)
+	function removeItem(bullets, num)
 	{
-		for (var x = num; x < arr.length-1; x++)
+		for (var x = num; x < bullets.length-1; x++)
 		{
-			arr[x] = arr[x+1];
+			bullets[x] = bullets[x+1];
 		}
-		arr.pop();
+		bullets.pop();
 	}
 
 
@@ -239,9 +239,23 @@
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y++;
                 }
-                else if (e.keyCode == 32) {
+// directional working attack need to change direction for each attack now
+
+                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
                 bullets.push({x: link_guy.x*60, y: link_guy.y*60});
             }
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)") {
+                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+            }
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)") {
+                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+            }
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)") {
+                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+            }
+            //     else if (e.keyCode == 32) {
+            //     bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+            // }
                 if(world[link_guy.y][link_guy.x] == 5){
                     world.length = 0;                 
                     world.push.apply(world, world2);
