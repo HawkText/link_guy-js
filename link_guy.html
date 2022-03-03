@@ -75,7 +75,31 @@
             top: 0px;
         }
 
-        .bullet{
+        .attackUp{
+		background: url('images/1942.gif');
+		background-position: -185px -400px;
+		width:20px;
+		height:20px;
+		position:absolute;
+        }
+
+        .attackRight{
+		background: url('images/1942.gif');
+		background-position: -185px -400px;
+		width:20px;
+		height:20px;
+		position:absolute;
+        }
+
+        .attackLeft{
+		background: url('images/1942.gif');
+		background-position: -185px -400px;
+		width:20px;
+		height:20px;
+		position:absolute;
+        }
+
+        .attackDown{
 		background: url('images/1942.gif');
 		background-position: -185px -400px;
 		width:20px;
@@ -88,9 +112,21 @@
     </head>
     <body>
         <div id="container">
-            <div id='bullets'>
-                <div class='bullet' style='top:250px; left:200px;'></div>
-                <div class='bullet' style='top:350px; left:200px;'></div>
+            <div id='attackUp'>
+                <div class='attackUp' style='top:250px; left:200px;'></div>
+                <div class='attackUp' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='attackRight'>
+                <div class='attackRight' style='top:250px; left:200px;'></div>
+                <div class='attackRight' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='attackLeft'>
+                <div class='attackLeft' style='top:250px; left:200px;'></div>
+                <div class='attackLeft' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='attackDown'>
+                <div class='attackDown' style='top:250px; left:200px;'></div>
+                <div class='attackDown' style='top:350px; left:200px;'></div>
             </div>
             <div id="world"></div>
             <div id="world2"></div>
@@ -148,7 +184,13 @@
                 y: 1,
             };
 
-            var bullets = [];
+            var attackUp = [];
+            
+            var attackRight = [];
+            
+            var attackLeft = [];
+            
+            var attackDown = [];
 
             function displayWorld(){
                 var output ='';
@@ -184,40 +226,130 @@
             displayLink_guy();
             displayScore();
             
-            function displayBullets(){
+            function displayAttackUp(){
                 var output = "";
-		for (var i = 0; i<bullets.length; i++)
+		for (var i = 0; i<attackUp.length; i++)
 		{
-			output += "<div class='bullet' style='top:"+ bullets[i].y + "px; left:"
-					+bullets[i].x + "px;'></div>";
+			output += "<div class='attackUp' style='top:"+ attackUp[i].y + "px; left:"
+					+attackUp[i].x + "px;'></div>";
 		}
-		document.getElementById('bullets').innerHTML = output;
+		document.getElementById('attackUp').innerHTML = output;
 	}
-            function moveBullets(){
-		for (var i = 0; i<bullets.length; i++)
+            function moveAttackUp(){
+		for (var i = 0; i<attackUp.length; i++)
 		{
-			bullets[i].y -= 5;
-			if (bullets[i].y <= 1)
+			attackUp[i].y -= 5;
+			if (attackUp[i].y <= 1)
 			{
-				removeItem(bullets, i);
+				removeItem(attackUp, i);
 			}
 		}
 	}
-	function removeItem(bullets, num)
+	function removeItem(attackUp, num)
 	{
-		for (var x = num; x < bullets.length-1; x++)
+		for (var x = num; x < attackUp.length-1; x++)
 		{
-			bullets[x] = bullets[x+1];
+			attackUp[x] = attackUp[x+1];
 		}
-		bullets.pop();
+		attackUp.pop();
 	}
-
+//attack right
+    function displayAttackRight(){
+                var output = "";
+		for (var i = 0; i<attackRight.length; i++)
+		{
+			output += "<div class='attackRight' style='top:"+ attackRight[i].y + "px; left:"
+					+attackRight[i].x + "px;'></div>";
+		}
+		document.getElementById('attackRight').innerHTML = output;
+	}
+            function moveAttackRight(){
+		for (var i = 0; i<attackRight.length; i++)
+		{
+			attackRight[i].x += 5;
+			if (attackRight[i].y <= 1)
+			{
+				removeItem(attackRight, i);
+			}
+		}
+	}
+	function removeItem(attackRight, num)
+	{
+		for (var x = num; x < attackRight.length-1; x++)
+		{
+			attackRight[x] = attackRight[x+1];
+		}
+		attackRight.pop();
+	}
+//attack left
+    function displayAttackLeft(){
+                var output = "";
+		for (var i = 0; i<attackLeft.length; i++)
+		{
+			output += "<div class='attackLeft' style='top:"+ attackLeft[i].y + "px; left:"
+					+attackLeft[i].x + "px;'></div>";
+		}
+		document.getElementById('attackLeft').innerHTML = output;
+	}
+            function moveAttackLeft(){
+		for (var i = 0; i<attackLeft.length; i++)
+		{
+			attackLeft[i].x -= 5;
+			if (attackLeft[i].y <= 1)
+			{
+				removeItem(attackLeft, i);
+			}
+		}
+	}
+	function removeItem(attackLeft, num)
+	{
+		for (var x = num; x < attackLeft.length-1; x++)
+		{
+			attackLeft[x] = attackLeft[x+1];
+		}
+		attackLeft.pop();
+	}
+//attack down
+    function displayAttackDown(){
+                var output = "";
+		for (var i = 0; i<attackDown.length; i++)
+		{
+			output += "<div class='attackDown' style='top:"+ attackDown[i].y + "px; left:"
+					+attackDown[i].x + "px;'></div>";
+		}
+		document.getElementById('attackDown').innerHTML = output;
+	}
+            function moveAttackDown(){
+		for (var i = 0; i<attackDown.length; i++)
+		{
+			attackDown[i].y += 5;
+			if (attackDown[i].y <= 1)
+			{
+				removeItem(attackDown, i);
+			}
+		}
+	}
+	function removeItem(attackDown, num)
+	{
+		for (var x = num; x < attackDown.length-1; x++)
+		{
+			attackDown[x] = attackDown[x+1];
+		}
+		attackDown.pop();
+	}
 
     function gameLoop(){
                     displayScore();
-                    moveBullets();
+                    displayAttackUp();
+                    moveAttackUp();
+                    displayAttackRight();
+                    moveAttackRight();
+                    displayAttackLeft();
+                    moveAttackLeft();
+                    displayAttackDown();
+                    moveAttackDown();
                     displayLink_guy();
-                    displayBullets();
+                    
 	}
 
 	setInterval(gameLoop, 20);
@@ -242,16 +374,16 @@
 // directional working attack need to change direction for each attack now
 
                 else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
-                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+                attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
             }
             else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)") {
-                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+                attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
             }
             else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)") {
-                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+                attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
             }
             else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)") {
-                bullets.push({x: link_guy.x*60, y: link_guy.y*60});
+                attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
             }
             //     else if (e.keyCode == 32) {
             //     bullets.push({x: link_guy.x*60, y: link_guy.y*60});
