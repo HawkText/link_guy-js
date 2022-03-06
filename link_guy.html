@@ -106,6 +106,7 @@
 		height:20px;
 		position:absolute;
         }
+        
 
     </style>
     
@@ -309,7 +310,16 @@
 		}
 		attackLeft.pop();
 	}
-//attack down
+//attack down -working on this
+function moveAttackDown(){
+		for (var i = 0; i<attackDown.length; i++)
+			attackDown[i].y += 5;
+            for (var j = 0; j<world; j++)
+			if(attackDown[i].x == world[attackDown.y][attackDown.x]) {
+		attackDown.pop();
+	}
+            }
+
     function displayAttackDown(){
                 var output = "";
 		for (var i = 0; i<attackDown.length; i++)
@@ -319,24 +329,15 @@
 		}
 		document.getElementById('attackDown').innerHTML = output;
 	}
-            function moveAttackDown(){
-		for (var i = 0; i<attackDown.length; i++)
-		{
-			attackDown[i].y += 5;
-			if (attackDown[i].y <= 1)
-			{
-				removeItem(attackDown, i);
-			}
-		}
-	}
-	function removeItem(attackDown, num)
-	{
-		for (var x = num; x < attackDown.length-1; x++)
-		{
-			attackDown[x] = attackDown[x+1];
-		}
-		attackDown.pop();
-	}
+            
+// Working on this area
+    // function detectCollision(){
+	// 		for (var h = 0; h < attackDown.length; h++)
+	// 		{
+    //             if(attackDown.x == world[1]){
+    //                 removeItem(attackDown, h);
+    //            } 
+
 
     function gameLoop(){
                     displayScore();
@@ -349,6 +350,7 @@
                     displayAttackDown();
                     moveAttackDown();
                     displayLink_guy();
+                    // detectCollision();
                     
 	}
 
@@ -371,6 +373,7 @@
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y++;
                 }
+                
 // directional working attack need to change direction for each attack now
 
                 else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
