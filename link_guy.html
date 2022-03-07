@@ -30,7 +30,7 @@
 
         }
         div.brick{
-            background-color: blue;
+            background-color: rgb(70, 70, 87);
         }
 
         div.empty{
@@ -102,8 +102,8 @@
         .attackDown{
 		background: url('images/1942.gif');
 		background-position: -185px -400px;
-		width:20px;
-		height:20px;
+		width:60px;
+		height:60px;
 		position:absolute;
         }
         
@@ -152,14 +152,14 @@
 
             var world2 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,2,2,2,2,2,2,2,2,2,1,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,1,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,1,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,6,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,1,2,2,2,2,1],
+                [1,2,6,2,2,2,2,2,2,2,1,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
@@ -169,12 +169,12 @@
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,1,1,1,1,1,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
 
@@ -314,11 +314,18 @@
 function moveAttackDown(){
 		for (var i = 0; i<attackDown.length; i++)
 			attackDown[i].y += 5;
-            for (var j = 0; j<world; j++)
-			if(attackDown[i].x == world[attackDown.y][attackDown.x]) {
-		attackDown.pop();
+
+                }
+			
+
+            function removeItemDown(arr, num)
+	{
+		for (var x = num; x < arr.length-1; x++)
+		{
+			arr[x] = arr[x+1];
+		}
+		arr.pop();
 	}
-            }
 
     function displayAttackDown(){
                 var output = "";
@@ -355,7 +362,7 @@ function moveAttackDown(){
 	}
 
 	setInterval(gameLoop, 20);
-
+    // console.log(attackDown); proves we need .y to hit detect 
             document.onkeydown = function(e){
                 if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
@@ -374,7 +381,7 @@ function moveAttackDown(){
                     link_guy.y++;
                 }
                 
-// directional working attack need to change direction for each attack now
+// directional working attack
 
                 else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
                 attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
@@ -388,9 +395,7 @@ function moveAttackDown(){
             else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)") {
                 attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
             }
-            //     else if (e.keyCode == 32) {
-            //     bullets.push({x: link_guy.x*60, y: link_guy.y*60});
-            // }
+
                 if(world[link_guy.y][link_guy.x] == 5){
                     world.length = 0;                 
                     world.push.apply(world, world2);
@@ -404,8 +409,9 @@ function moveAttackDown(){
                     score+=10;
                     displayWorld();
                     displayScore();
+                    
                 }
-            }
+        }
         </script>
 
     </body>
