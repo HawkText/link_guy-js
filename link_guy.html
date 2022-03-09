@@ -170,11 +170,25 @@
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,1,1,1,1,1,2,1],
+                [1,2,2,2,2,1,7,2,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
-                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world4 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,1,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,1,2,2,2,2,2,2,2,2,2,1],
+                [1,2,1,1,2,2,2,2,2,2,2,2,1],
+                [1,2,1,2,1,2,2,2,2,2,2,2,1],
+                [1,2,1,2,1,1,2,2,2,2,2,2,1],
+                [1,2,1,2,1,2,1,2,2,2,2,2,1],
+                [1,2,1,2,1,2,1,1,2,2,2,2,1],
+                [1,2,1,2,1,2,1,2,1,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
 
@@ -205,6 +219,8 @@
                         else if(world[i][j] == 5)
                             output += "<div class='stairs'></div>";
                         else if(world[i][j] == 6)
+                            output += "<div class='stairs'></div>";
+                            else if(world[i][j] == 7)
                             output += "<div class='stairs'></div>";
                         else if(world[i][j] == 0)
                             output +="<div class='empty'></div>";
@@ -344,7 +360,16 @@ function moveAttackDown(){
     //             if(attackDown.x == world[1]){
     //                 removeItem(attackDown, h);
     //            } 
-
+	// function detectCollision(){
+	// 	for (var i = 0; i < world.length;i++)
+	// 	{
+	// 		for (var h = 0; h < attackDown.length; h++)
+	// 		{
+	// 			if ((Math.abs(attackDown[h].x - world[i].x) < 20) && (Math.abs(attackDown[h].y - world[i].y) < 20))
+	// 			{
+	// 				removeItem(attackDown, h);
+	// 			}
+	// 		}
 
     function gameLoop(){
                     displayScore();
@@ -357,8 +382,7 @@ function moveAttackDown(){
                     displayAttackDown();
                     moveAttackDown();
                     displayLink_guy();
-                    // detectCollision();
-                    
+                    detectCollision();
 	}
 
 	setInterval(gameLoop, 20);
@@ -403,6 +427,10 @@ function moveAttackDown(){
                 if(world[link_guy.y][link_guy.x] == 6){
                     world.length = 0;                 
                     world.push.apply(world, world3);
+                }
+                if(world[link_guy.y][link_guy.x] == 7){
+                    world.length = 0;                 
+                    world.push.apply(world, world4);
                 }
                 if(world[link_guy.y][link_guy.x] == 2){
                     world[link_guy.y][link_guy.x] = 0;
