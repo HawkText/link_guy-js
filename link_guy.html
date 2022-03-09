@@ -53,6 +53,32 @@
             background-size: cover;
         }
 
+        div.blue_rupee{
+            background: url("images/blue_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        div.green_rupee{
+            background: url("images/green_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        div.red_rupee{
+            background: url("images/red_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        div.yellow_rupee{
+            background: url("images/yellow_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
         div#link_guy{
             background: url("images/link_walk_down.gif");
             background-repeat: no-repeat;
@@ -130,7 +156,6 @@
                 <div class='attackDown' style='top:350px; left:200px;'></div>
             </div>
             <div id="world"></div>
-            <div id="world2"></div>
             <div id="link_guy"></div>
             <div id="score">Yum</div>
         </div>
@@ -138,29 +163,29 @@
 
             var world = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [10,0,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,5,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,0,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,8,8,8,1],
+                [1,12,12,12,12,12,12,12,12,8,5,8,1],
+                [1,12,12,12,12,12,12,12,12,8,8,8,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
 
             var world2 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [1,2,2,2,2,2,2,2,2,2,1,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,1,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,1,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,2,2,2,2,2,1,2,2,2,2,1],
-                [1,2,6,2,2,2,2,2,2,2,1,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,8,8,8,8,8,8,8,8,1],
+                [1,2,6,2,8,8,8,8,8,8,8,8,1],
+                [1,2,2,2,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,1,1,1,1,1,8,1,1,1,1,1,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
 
@@ -170,8 +195,8 @@
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,2,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,1,1,1,1,1,2,1],
-                [1,2,2,2,2,1,7,2,2,2,2,2,1],
-                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,7,9,2,2,2,2,1],
+                [1,2,2,2,2,1,9,9,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
                 [1,2,2,2,2,1,2,2,2,2,2,2,1],
@@ -180,15 +205,29 @@
 
             var world4 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [1,1,2,2,2,2,2,2,2,2,2,2,1],
-                [1,2,1,2,2,2,2,2,2,2,2,2,1],
-                [1,2,1,1,2,2,2,2,2,2,2,2,1],
-                [1,2,1,2,1,2,2,2,2,2,2,2,1],
-                [1,2,1,2,1,1,2,2,2,2,2,2,1],
-                [1,2,1,2,1,2,1,2,2,2,2,2,1],
-                [1,2,1,2,1,2,1,1,2,2,2,2,1],
-                [1,2,1,2,1,2,1,2,1,2,2,2,1],
-                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,1,9,9,9,9,9,9,9,9,9,9,1],
+                [1,13,1,9,9,9,9,9,9,9,9,9,1],
+                [1,11,1,1,9,9,9,9,9,9,9,9,1],
+                [1,9,1,9,1,9,9,9,9,9,9,9,1],
+                [1,9,1,9,1,1,9,9,9,9,9,9,1],
+                [1,9,1,9,1,9,1,9,9,9,9,9,1],
+                [1,9,1,9,1,9,1,1,9,9,9,9,1],
+                [1,9,1,9,1,9,1,9,1,9,9,9,1],
+                [1,9,9,9,9,9,9,9,9,9,9,9,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world5 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,1,11,11,11,11,11,11,11,11,11,11,1],
+                [1,2,1,11,11,11,11,11,11,11,11,1,1],
+                [1,11,11,1,11,11,11,11,11,11,11,11,1],
+                [1,11,1,11,1,11,11,11,11,11,11,11,1],
+                [1,11,11,11,11,11,11,11,11,11,11,11,1],
+                [1,11,1,11,1,11,1,11,11,11,11,11,1],
+                [1,11,11,11,11,11,11,1,11,11,11,11,1],
+                [1,11,11,11,1,11,1,1,1,11,11,11,1],
+                [1,1,11,1,11,11,11,11,11,11,11,11,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
 
@@ -220,7 +259,17 @@
                             output += "<div class='stairs'></div>";
                         else if(world[i][j] == 6)
                             output += "<div class='stairs'></div>";
-                            else if(world[i][j] == 7)
+                        else if(world[i][j] == 7)
+                            output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 8)
+                            output += "<div class='blue_rupee'></div>";
+                        else if(world[i][j] == 9)
+                            output += "<div class='red_rupee'></div>";
+                        else if(world[i][j] == 11)
+                            output += "<div class='yellow_rupee'></div>";
+                        else if(world[i][j] == 12)
+                            output += "<div class='green_rupee'></div>"; 
+                        else if(world[i][j] == 13)
                             output += "<div class='stairs'></div>";
                         else if(world[i][j] == 0)
                             output +="<div class='empty'></div>";
@@ -432,12 +481,39 @@ function moveAttackDown(){
                     world.length = 0;                 
                     world.push.apply(world, world4);
                 }
+                if(world[link_guy.y][link_guy.x] == 13){
+                    world.length = 0;                 
+                    world.push.apply(world, world5);
+                }
                 if(world[link_guy.y][link_guy.x] == 2){
                     world[link_guy.y][link_guy.x] = 0;
                     score+=10;
                     displayWorld();
                     displayScore();
-                    
+                }
+                if(world[link_guy.y][link_guy.x] == 8){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=5;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 9){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=20;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 11){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=100;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 12){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=1;
+                    displayWorld();
+                    displayScore();
                 }
         }
         </script>
