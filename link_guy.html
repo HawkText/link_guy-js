@@ -220,10 +220,10 @@
             var world5 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 [1,1,11,11,11,11,11,11,11,11,11,11,1],
-                [1,2,1,11,11,11,11,11,11,11,11,1,1],
-                [1,11,11,1,11,11,11,11,11,11,11,11,1],
+                [1,2,1,11,11,11,11,11,1,11,11,1,1],
+                [1,11,11,1,11,11,11,1,11,1,1,11,1],
                 [1,11,1,11,1,11,11,11,11,11,11,11,1],
-                [1,11,11,11,11,11,11,11,11,11,11,11,1],
+                [1,11,11,11,11,11,11,1,11,11,1,11,1],
                 [1,11,1,11,1,11,1,11,11,11,11,11,1],
                 [1,11,11,11,11,11,11,1,11,11,11,11,1],
                 [1,11,11,11,1,11,1,1,1,11,11,11,1],
@@ -376,14 +376,34 @@
 		attackLeft.pop();
 	}
 //attack down -working on this
-function moveAttackDown(){
+function displayAttackDown(){
+                var output = "";
 		for (var i = 0; i<attackDown.length; i++)
+		{
+			output += "<div class='attackLeft' style='top:"+ attackDown[i].y + "px; left:"
+					+attackDown[i].x + "px;'></div>";
+		}
+		document.getElementById('attackDown').innerHTML = output;
+	}
+            function moveAttackDown(){
+		for (var i = 0; i<attackDown.length; i++)
+		{
 			attackDown[i].y += 5;
-
-                }
-			
-
-            function removeItemDown(arr, num)
+            
+			// if (world[attackDown.y+1][attackDown.x] != 1)
+			// {
+			// 	removeItemDown(attackDown, i);
+			// }
+		}
+	}
+	// function removeItemDown(attackDown, num)
+	// {
+	// 	for (var x = num; x < attackDown.length-1; x++)
+	// 	{
+	// 		attackDown[x] = attackDown[x+1];
+	// 	}
+	// 	attackDown.pop();
+    function removeItemDown(arr, num)
 	{
 		for (var x = num; x < arr.length-1; x++)
 		{
@@ -391,17 +411,7 @@ function moveAttackDown(){
 		}
 		arr.pop();
 	}
-
-    function displayAttackDown(){
-                var output = "";
-		for (var i = 0; i<attackDown.length; i++)
-		{
-			output += "<div class='attackDown' style='top:"+ attackDown[i].y + "px; left:"
-					+attackDown[i].x + "px;'></div>";
-		}
-		document.getElementById('attackDown').innerHTML = output;
-	}
-            
+	
 // Working on this area
     // function detectCollision(){
 	// 		for (var h = 0; h < attackDown.length; h++)
@@ -409,16 +419,18 @@ function moveAttackDown(){
     //             if(attackDown.x == world[1]){
     //                 removeItem(attackDown, h);
     //            } 
-	// function detectCollision(){
-	// 	for (var i = 0; i < world.length;i++)
-	// 	{
-	// 		for (var h = 0; h < attackDown.length; h++)
-	// 		{
-	// 			if ((Math.abs(attackDown[h].x - world[i].x) < 20) && (Math.abs(attackDown[h].y - world[i].y) < 20))
-	// 			{
-	// 				removeItem(attackDown, h);
-	// 			}
-	// 		}
+	function detectCollision(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackDown.length; h++)
+			{
+				if (attackDown[h].y == 600)
+				{
+					removeItemDown(attackDown, h);
+				}
+			}
+        }
+    }
 
     function gameLoop(){
                     displayScore();
@@ -432,10 +444,12 @@ function moveAttackDown(){
                     moveAttackDown();
                     displayLink_guy();
                     detectCollision();
-	}
+                }
 
 	setInterval(gameLoop, 20);
     // console.log(attackDown); proves we need .y to hit detect 
+
+    // moving 
             document.onkeydown = function(e){
                 if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
@@ -451,12 +465,12 @@ function moveAttackDown(){
                 }
                 else if(e.keyCode == 40 && world[link_guy.y+1][link_guy.x] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
-                    link_guy.y++;
+                    link_guy.y += 1;
                 }
                 
 // directional working attack
 
-                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
                 attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
             }
             else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)") {
