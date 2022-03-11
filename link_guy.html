@@ -157,6 +157,7 @@
             </div>
             <div id="world"></div>
             <div id="link_guy"></div>
+            <div class="brick"></div>
             <div id="score">Yum</div>
         </div>
         <script>
@@ -245,14 +246,21 @@
             var attackLeft = [];
             
             var attackDown = [];
-
+            for(var i=0; i<world.length; i++){
+            let elem = document.querySelector('div');
+            var rect = elem.getBoundingClientRect();
+            console.log(rect.top, rect.right, rect.bottom, rect.left);
+            }
             function displayWorld(){
                 var output ='';
                 for(var i=0; i<world.length; i++){
                     output += "<div class='row'>";
                     for(var j=0; j<world[i].length; j++){
                         if(world[i][j] == 1)
-                            output += "<div class='brick'></div>";
+                            
+                            output += "<div class='brick' style='top:"+ world + "px; left:"
+					+attackLeft[i] + "px;'></div>";
+                    
                         else  if(world[i][j] == 2)
                             output +="<div class='purple_rupee'></div>";
                         else if(world[i][j] == 5)
@@ -311,14 +319,26 @@
 			}
 		}
 	}
-	function removeItem(attackUp, num)
+    function removeItemUp(arr, num)
 	{
-		for (var x = num; x < attackUp.length-1; x++)
+		for (var x = num; x < arr.length-1; x++)
 		{
-			attackUp[x] = attackUp[x+1];
+			arr[x] = arr[x+1];
 		}
-		attackUp.pop();
+		arr.pop();
 	}
+	function detectCollisionUp(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackUp.length; h++)
+			{
+				if (attackUp[h].y == 40)
+				{
+					removeItemUp(attackUp, h);
+				}
+			}
+        }
+    }
 //attack right
     function displayAttackRight(){
                 var output = "";
@@ -339,14 +359,26 @@
 			}
 		}
 	}
-	function removeItem(attackRight, num)
+    function removeItemRight(arr, num)
 	{
-		for (var x = num; x < attackRight.length-1; x++)
+		for (var x = num; x < arr.length-1; x++)
 		{
-			attackRight[x] = attackRight[x+1];
+			arr[x] = arr[x+1];
 		}
-		attackRight.pop();
+		arr.pop();
 	}
+	function detectCollisionRight(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackRight.length; h++)
+			{
+				if (attackRight[h].x == 720)
+				{
+					removeItemRight(attackRight, h);
+				}
+			}
+        }
+    }
 //attack left
     function displayAttackLeft(){
                 var output = "";
@@ -363,18 +395,30 @@
 			attackLeft[i].x -= 5;
 			if (attackLeft[i].y <= 1)
 			{
-				removeItem(attackLeft, i);
+				removeItemLeft(attackLeft, i);
 			}
 		}
 	}
-	function removeItem(attackLeft, num)
+    function removeItemLeft(arr, num)
 	{
-		for (var x = num; x < attackLeft.length-1; x++)
+		for (var x = num; x < arr.length-1; x++)
 		{
-			attackLeft[x] = attackLeft[x+1];
+			arr[x] = arr[x+1];
 		}
-		attackLeft.pop();
+		arr.pop();
 	}
+	function detectCollisionLeft(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackLeft.length; h++)
+			{
+				if (attackLeft[h].x == 50)
+				{
+					removeItemLeft(attackLeft, h);
+				}
+			}
+        }
+    }
 //attack down -working on this
 function displayAttackDown(){
                 var output = "";
@@ -389,20 +433,9 @@ function displayAttackDown(){
 		for (var i = 0; i<attackDown.length; i++)
 		{
 			attackDown[i].y += 5;
-            
-			// if (world[attackDown.y+1][attackDown.x] != 1)
-			// {
-			// 	removeItemDown(attackDown, i);
-			// }
 		}
 	}
-	// function removeItemDown(attackDown, num)
-	// {
-	// 	for (var x = num; x < attackDown.length-1; x++)
-	// 	{
-	// 		attackDown[x] = attackDown[x+1];
-	// 	}
-	// 	attackDown.pop();
+
     function removeItemDown(arr, num)
 	{
 		for (var x = num; x < arr.length-1; x++)
@@ -411,15 +444,9 @@ function displayAttackDown(){
 		}
 		arr.pop();
 	}
-	
-// Working on this area
-    // function detectCollision(){
-	// 		for (var h = 0; h < attackDown.length; h++)
-	// 		{
-    //             if(attackDown.x == world[1]){
-    //                 removeItem(attackDown, h);
-    //            } 
-	function detectCollision(){
+
+	function detectCollisionDown(){
+        
 		for (var i = 0; i < world.length;i++)
 		{
 			for (var h = 0; h < attackDown.length; h++)
@@ -443,7 +470,10 @@ function displayAttackDown(){
                     displayAttackDown();
                     moveAttackDown();
                     displayLink_guy();
-                    detectCollision();
+                    detectCollisionDown();
+                    detectCollisionLeft();
+                    detectCollisionRight();
+                    detectCollisionUp();
                 }
 
 	setInterval(gameLoop, 20);
@@ -483,6 +513,7 @@ function displayAttackDown(){
                 attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
             }
 
+            
                 if(world[link_guy.y][link_guy.x] == 5){
                     world.length = 0;                 
                     world.push.apply(world, world2);
