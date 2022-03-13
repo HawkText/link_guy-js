@@ -510,11 +510,11 @@ function displayAttackDown(){
 			if (enemies[i].type == 1)
 			{
 				output += "<div class='enemy1' style='top:"+ enemies[i].y + "px; left:"
-					   +enemies[i].x + "px;'></div>";
+					+enemies[i].x + "px;'></div>";
 			}
 			else {
 				output += "<div class='enemy2' style='top:"+ enemies[i].y + "px; left:"
-					   +enemies[i].x+222 + "px;'></div>";
+					+enemies[i].x+222 + "px;'></div>";
 			}
 		}
 		document.getElementById('enemies').innerHTML = output;
@@ -531,10 +531,11 @@ function displayAttackDown(){
 			}
 		}
 	}
+    /////////////////////////////////WORKING ON THIS STILL///////////////////////////////
     function detectCollisionPlayerEnemy(){
     for (var i = 0; i < enemies.length;i++)
 		{
-                if ((Math.abs(link_guy.x - enemies[i].x) < 60) && (Math.abs(link_guy.y - enemies[i].y) < 60))
+                if ((Math.abs(link_guy.x - enemies[i].x) <= 10) && (Math.abs(link_guy.y - enemies[i].y) <= 10))
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.random()*650;
@@ -545,7 +546,7 @@ function displayAttackDown(){
 
         }
     }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 // enemy hit detection
 	function detectCollisionEnemyDown(){
 		for (var i = 0; i < enemies.length;i++)
