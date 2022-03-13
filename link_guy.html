@@ -186,7 +186,7 @@
 
             var world = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [1,0,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
                 [1,12,12,12,12,12,12,12,12,12,12,12,1],
                 [1,12,12,12,12,12,12,12,12,12,12,12,1],
                 [1,12,12,12,12,12,12,12,12,12,12,12,1],
@@ -194,7 +194,7 @@
                 [1,12,12,12,12,12,12,12,12,12,12,12,1],
                 [1,12,12,12,12,12,12,12,12,8,8,8,1],
                 [1,12,12,12,12,12,12,12,12,8,5,8,1],
-                [1,12,12,12,12,12,12,12,12,8,8,8,1],
+                [1,0,12,12,12,12,12,12,12,8,8,8,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
 
@@ -258,7 +258,7 @@
 
             var link_guy = {
                 x: 1,
-                y: 1,
+                y: 9,
             };
 
             var attackUp = [];
@@ -524,14 +524,89 @@ function displayAttackDown(){
 		for (var i = 0; i<enemies.length; i++)
 		{
 			enemies[i].y += 3;
-			if (enemies[i].y > 540)
+			if (enemies[i].y > 580)
 			{
 				enemies[i].y = 0;
 				enemies[i].x = Math.random()*650;
 			}
 		}
 	}
+    function detectCollisionPlayerEnemy(){
+    for (var i = 0; i < enemies.length;i++)
+		{
+                if ((Math.abs(link_guy.x - enemies[i].x) < 60) && (Math.abs(link_guy.y - enemies[i].y) < 60))
+				{
+					enemies[i].y = 0;
+					enemies[i].x = Math.random()*650;
+					link_guy.x = 1;
+					link_guy.y = 1;
+					score -= 500;
+				}
 
+        }
+    }
+
+// enemy hit detection
+	function detectCollisionEnemyDown(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackDown.length; h++)
+			{
+				if ((Math.abs(attackDown[h].x - enemies[i].x) < 60) && (Math.abs(attackDown[h].y - enemies[i].y) < 60))
+				{
+					removeItemDown(attackDown, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.random()*650;
+					score += 999;
+				}
+			}
+		}
+	}
+    function detectCollisionEnemyUp(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackUp.length; h++)
+			{
+				if ((Math.abs(attackUp[h].x - enemies[i].x) < 60) && (Math.abs(attackUp[h].y - enemies[i].y) < 60))
+				{
+					removeItemUp(attackUp, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.random()*650;
+					score += 999;
+				}
+			}
+		}
+	}
+    function detectCollisionEnemyRight(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackRight.length; h++)
+			{
+				if ((Math.abs(attackRight[h].x - enemies[i].x) < 60) && (Math.abs(attackRight[h].y - enemies[i].y) < 60))
+				{
+					removeItemUp(attackRight, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.random()*650;
+					score += 999;
+				}
+			}
+		}
+    }
+    function detectCollisionEnemyLeft(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackLeft.length; h++)
+			{
+				if ((Math.abs(attackLeft[h].x - enemies[i].x) < 60) && (Math.abs(attackLeft[h].y - enemies[i].y) < 60))
+				{
+					removeItemUp(attackLeft, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.random()*650;
+					score += 999;
+				}
+			}
+		}
+    }
 
     function gameLoop(){
                     displayScore();
@@ -550,6 +625,11 @@ function displayAttackDown(){
                     detectCollisionUp();
                     moveEnemies();
                     displayEnemies();
+                    detectCollisionEnemyDown();
+                    detectCollisionEnemyUp();
+                    detectCollisionEnemyLeft();
+                    detectCollisionEnemyRight();
+                    detectCollisionPlayerEnemy();
                 }
 
 	setInterval(gameLoop, 20);
