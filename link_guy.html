@@ -20,12 +20,11 @@
         }
         
         div.stairs{
-            background: url("images/downstairs.jpg");
+            background: url('images/stairs_2.jpg');
             background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
             width: 60px;
             height: 60px;
+
             
 
         }
@@ -132,6 +131,25 @@
 		height:60px;
 		position:absolute;
         }
+
+        .enemy1{
+		background: url('images/bat_flapping.gif');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:50px;
+		height:50px;
+		position:absolute;
+	}
+	.enemy2{
+		background: url('images/bat_flapping.gif');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:50px;
+		height:50px;
+		position:absolute;
+	}
         
 
     </style>
@@ -154,6 +172,10 @@
             <div id='attackDown'>
                 <div class='attackDown' style='top:250px; left:200px;'></div>
                 <div class='attackDown' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='enemies'>
+                <div class='enemy1'></div>
+                <div class='enemy1'></div>
             </div>
             <div id="world"></div>
             <div id="link_guy"></div>
@@ -246,21 +268,38 @@
             var attackLeft = [];
             
             var attackDown = [];
-            for(var i=0; i<world.length; i++){
-            let elem = document.querySelector('div');
-            var rect = elem.getBoundingClientRect();
-            console.log(rect.top, rect.right, rect.bottom, rect.left);
-            }
+
+            var enemies = [
+		{
+			x: 150, y:250, type: 1
+		},
+		{
+			x: 200, y:500, type: 2
+		},
+		{
+			x: 300, y:250, type: 1
+		},
+		{
+			x: 400, y:500, type: 2
+		},
+		{
+			x: 500, y:250, type: 1
+		},
+		{
+			x:600, y:500, type: 2
+		},
+		{
+			x: 700, y:250, type: 1
+		}
+	];
+
             function displayWorld(){
                 var output ='';
                 for(var i=0; i<world.length; i++){
                     output += "<div class='row'>";
                     for(var j=0; j<world[i].length; j++){
                         if(world[i][j] == 1)
-                            
-                            output += "<div class='brick' style='top:"+ world + "px; left:"
-					+attackLeft[i] + "px;'></div>";
-                    
+                            output += "<div class='brick'></div>";
                         else  if(world[i][j] == 2)
                             output +="<div class='purple_rupee'></div>";
                         else if(world[i][j] == 5)
@@ -444,20 +483,55 @@ function displayAttackDown(){
 		}
 		arr.pop();
 	}
-
+// working on making in map detection for inside map
 	function detectCollisionDown(){
         
 		for (var i = 0; i < world.length;i++)
 		{
 			for (var h = 0; h < attackDown.length; h++)
-			{
-				if (attackDown[h].y == 600)
+			{{
+            let elem = document.querySelector('div.brick');
+            var rect = elem.getBoundingClientRect();
+            }
+				if (attackDown[h].y == rect.bottom+550)
 				{
 					removeItemDown(attackDown, h);
 				}
 			}
         }
     }
+
+    //enemy
+
+    function displayEnemies(){
+		var output = "";
+		for (var i = 0; i<enemies.length; i++)
+		{
+			if (enemies[i].type == 1)
+			{
+				output += "<div class='enemy1' style='top:"+ enemies[i].y + "px; left:"
+					   +enemies[i].x + "px;'></div>";
+			}
+			else {
+				output += "<div class='enemy2' style='top:"+ enemies[i].y + "px; left:"
+					   +enemies[i].x+222 + "px;'></div>";
+			}
+		}
+		document.getElementById('enemies').innerHTML = output;
+	}
+
+	function moveEnemies(){
+		for (var i = 0; i<enemies.length; i++)
+		{
+			enemies[i].y += 3;
+			if (enemies[i].y > 540)
+			{
+				enemies[i].y = 0;
+				enemies[i].x = Math.random()*650;
+			}
+		}
+	}
+
 
     function gameLoop(){
                     displayScore();
@@ -474,6 +548,8 @@ function displayAttackDown(){
                     detectCollisionLeft();
                     detectCollisionRight();
                     detectCollisionUp();
+                    moveEnemies();
+                    displayEnemies();
                 }
 
 	setInterval(gameLoop, 20);
