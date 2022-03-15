@@ -7,7 +7,12 @@
         <title>Document</title>
     <style type="text/css">
         body{
+            background: url('images/background_tiles_grey.jpg');
             background-color: black;
+        background-repeat: no-repeat;
+        width: 1289px;
+        height: 680px;
+        background-size: 720px 600px;
             margin: 0px;
             font-size: 0;
         }
@@ -153,8 +158,8 @@
         background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-		width:50px;
-		height:50px;
+		width:60px;
+		height:60px;
 		position:absolute;
 	}
 	.enemy2{
@@ -162,17 +167,40 @@
         background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-		width:50px;
-		height:50px;
+		width:60px;
+		height:60px;
 		position:absolute;
 	}
         
+	.explosion{
+		background: url('images/blood_burst.gif') no-repeat center;
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width: 64px;
+		height: 64px;
+		position: absolute;
+	}
+
+
+    div.container{
+        background: url('images/background.jpg.');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        width: 1289px;
+        height: 680px;
+
+
+    }
+
 
     </style>
     
     </head>
     <body>
         <div id="container">
+            <div id="background" >
             <div id='attackUp'>
                 <div class='attackUp' style='top:250px; left:200px;'></div>
                 <div class='attackUp' style='top:350px; left:200px;'></div>
@@ -197,6 +225,9 @@
             <div id="link_guy"></div>
             <div class="brick"></div>
             <div id="score">Yum</div>
+            <div id='explosions'>
+                <div class='explosion'></div>
+            </div>
         </div>
         <script>
 
@@ -284,6 +315,8 @@
             var attackLeft = [];
             
             var attackDown = [];
+
+            var explosions = [];
 
             var enemies = [
 		{
@@ -552,7 +585,7 @@ function displayAttackDown(){
     function detectCollisionPlayerEnemy(){
     for (var i = 0; i < enemies.length;i++)
 		{
-                if ((Math.abs(link_guy.x*60 - enemies[i].x) <= 60) && (Math.abs(link_guy.y*60 - enemies[i].y) <= 60))
+                if ((Math.abs(link_guy.x*60 - enemies[i].x) <= 45) && (Math.abs(link_guy.y*60 - enemies[i].y) <= 45))
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
@@ -574,13 +607,40 @@ function displayAttackDown(){
 				if ((Math.abs(attackDown[h].x - enemies[i].x) < 60) && (Math.abs(attackDown[h].y - enemies[i].y) < 60))
 				{
 					removeItemDown(attackDown, h);
+                    explosions.push({x: enemies[i].x-15, y: enemies[i].y-30, count: 0});
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
+                    explosions.push({x: enemies[i].x-15, y: enemies[i].y-30, count: 0});
 					score += 3;
 				}
 			}
 		}
 	}
+
+    
+	function removeItem(arr, num)
+	{
+		for (var x = num; x < arr.length-1; x++)
+		{
+			arr[x] = arr[x+1];
+		}
+		arr.pop();
+	}
+
+    function displayAnimation()
+	{
+		var output = "";
+		for (var i = 0; i<explosions.length; i++)
+		{
+			explosions[i].count++;
+			output += "<div class='explosion' style='top:"+ explosions[i].y + "px; left:"
+					   +explosions[i].x + "px;'></div>";
+			if (explosions[i].count > 15 )
+				removeItem(explosions, i);
+		}
+		document.getElementById('explosions').innerHTML = output;
+	}
+	
     function detectCollisionEnemyUp(){
 		for (var i = 0; i < enemies.length;i++)
 		{
@@ -589,6 +649,7 @@ function displayAttackDown(){
 				if ((Math.abs(attackUp[h].x - enemies[i].x) < 60) && (Math.abs(attackUp[h].y - enemies[i].y) < 60))
 				{
 					removeItemUp(attackUp, h);
+                    explosions.push({x: enemies[i].x-15, y: enemies[i].y-30, count: 0});
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
 					score += 3;
@@ -604,6 +665,7 @@ function displayAttackDown(){
 				if ((Math.abs(attackRight[h].x - enemies[i].x) < 60) && (Math.abs(attackRight[h].y - enemies[i].y) < 60))
 				{
 					removeItemUp(attackRight, h);
+                    explosions.push({x: enemies[i].x-15, y: enemies[i].y-30, count: 0});
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
 					score += 3;
@@ -619,6 +681,7 @@ function displayAttackDown(){
 				if ((Math.abs(attackLeft[h].x - enemies[i].x) < 60) && (Math.abs(attackLeft[h].y - enemies[i].y) < 60))
 				{
 					removeItemUp(attackLeft, h);
+                    explosions.push({x: enemies[i].x-15, y: enemies[i].y-30, count: 0});
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
 					score += 3;
@@ -649,6 +712,7 @@ function displayAttackDown(){
                     detectCollisionEnemyLeft();
                     detectCollisionEnemyRight();
                     detectCollisionPlayerEnemy();
+                    displayAnimation();
                 }
 
 	setInterval(gameLoop, 20);
