@@ -540,8 +540,9 @@ function displayAttackDown(){
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					link_guy.x = 1;
-					link_guy.y = 1;
+                    const myobj = document.getElementById('link_guy');
+                    myobj.remove();
+                    return;
 					score -= 500;
 				}
 
@@ -559,7 +560,7 @@ function displayAttackDown(){
 					removeItemDown(attackDown, h);
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					score += 999;
+					score += 1;
 				}
 			}
 		}
@@ -574,7 +575,7 @@ function displayAttackDown(){
 					removeItemUp(attackUp, h);
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					score += 999;
+					score += 1;
 				}
 			}
 		}
@@ -589,7 +590,7 @@ function displayAttackDown(){
 					removeItemUp(attackRight, h);
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					score += 999;
+					score += 1;
 				}
 			}
 		}
@@ -604,7 +605,7 @@ function displayAttackDown(){
 					removeItemUp(attackLeft, h);
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					score += 999;
+					score += 1;
 				}
 			}
 		}
