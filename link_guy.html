@@ -514,7 +514,7 @@ function displayAttackDown(){
 			}
 			else {
 				output += "<div class='enemy2' style='top:"+ enemies[i].y + "px; left:"
-					+enemies[i].x+222 + "px;'></div>";
+					+enemies[i].x + "px;'></div>";
 			}
 		}
 		document.getElementById('enemies').innerHTML = output;
@@ -527,7 +527,8 @@ function displayAttackDown(){
 			if (enemies[i].y > 580)
 			{
 				enemies[i].y = 0;
-				enemies[i].x = Math.random()*650;
+				enemies[i].x = Math.round(Math.random()*650);
+                
 			}
 		}
 	}
@@ -535,10 +536,10 @@ function displayAttackDown(){
     function detectCollisionPlayerEnemy(){
     for (var i = 0; i < enemies.length;i++)
 		{
-                if ((Math.abs(link_guy.x - enemies[i].x) <= 10) && (Math.abs(link_guy.y - enemies[i].y) <= 10))
+                if ((Math.abs(link_guy.x*60 - enemies[i].x) <= 60) && (Math.abs(link_guy.y*60 - enemies[i].y) <= 60))
 				{
 					enemies[i].y = 0;
-					enemies[i].x = Math.random()*650;
+					enemies[i].x = Math.round(Math.random()*650);
 					link_guy.x = 1;
 					link_guy.y = 1;
 					score -= 500;
@@ -557,7 +558,7 @@ function displayAttackDown(){
 				{
 					removeItemDown(attackDown, h);
 					enemies[i].y = 0;
-					enemies[i].x = Math.random()*650;
+					enemies[i].x = Math.round(Math.random()*650);
 					score += 999;
 				}
 			}
@@ -572,7 +573,7 @@ function displayAttackDown(){
 				{
 					removeItemUp(attackUp, h);
 					enemies[i].y = 0;
-					enemies[i].x = Math.random()*650;
+					enemies[i].x = Math.round(Math.random()*650);
 					score += 999;
 				}
 			}
@@ -587,7 +588,7 @@ function displayAttackDown(){
 				{
 					removeItemUp(attackRight, h);
 					enemies[i].y = 0;
-					enemies[i].x = Math.random()*650;
+					enemies[i].x = Math.round(Math.random()*650);
 					score += 999;
 				}
 			}
@@ -602,7 +603,7 @@ function displayAttackDown(){
 				{
 					removeItemUp(attackLeft, h);
 					enemies[i].y = 0;
-					enemies[i].x = Math.random()*650;
+					enemies[i].x = Math.round(Math.random()*650);
 					score += 999;
 				}
 			}
