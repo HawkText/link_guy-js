@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    <style type="text/css">
+        body{
+            background-color: black;
+            margin: 0px;
+            font-size: 0;
+        }
+
+
+        div.row div{
+            width:60px;
+            height: 60px;
+            display:inline-block;
+        }
+        
+        div.stairs{
+            background: url('images/stairs_2.jpg');
+            background-repeat: no-repeat;
+            width: 60px;
+            height: 60px;
+
+            
+
+        }
+        div.brick{
+            background-color: rgb(70, 70, 87);
+        }
+
+        div.empty{
+            background-position: center;
+        }
+
+        div.leftwall{
+            background: url("images/sprites_galore.png");
+            background-position: -240px -315px;
+            width: 60px;
+            height: 60px;
+            
+
+        }
+        
+        div.purple_rupee{
+            background: url("images/purple_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        div.blue_rupee{
+            background: url("images/blue_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        div.green_rupee{
+            background: url("images/green_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        div.red_rupee{
+            background: url("images/red_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        div.yellow_rupee{
+            background: url("images/yellow_rupee_spin.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        div#link_guy{
+            background: url("images/link_walk_down.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 60px;
+            height: 60px;
+            position: absolute;
+        }
+
+        div#score{
+            border:1px solid white;
+            width: 58px;
+            height: 58px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(161, 190, 29);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 0px;
+        }
+
+        .attackUp{
+		background: url('images/silver_arrow.png');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:45px;
+		height:45px;
+		position:absolute;
+        transform: rotate(135deg);
+        margin-left: 7px;
+        }
+
+        .attackRight{
+            background: url('images/silver_arrow.png');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:45px;
+		height:45px;
+		position:absolute;
+        transform: rotate(-135deg);
+        margin-top: 7px;
+        }
+
+        .attackLeft{
+            background: url('images/silver_arrow.png');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:45px;
+		height:45px;
+		position:absolute;
+        transform: rotate(45deg);
+        margin-top: 7px;
+        }
+
+        .attackDown{
+            background: url('images/silver_arrow.png');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:45px;
+		height:45px;
+		position:absolute;
+        transform: rotate(-45deg);
+        margin-left: 7px;
+        }
+
+        .enemy1{
+		background: url('images/bat_flapping.gif');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:50px;
+		height:50px;
+		position:absolute;
+	}
+	.enemy2{
+		background: url('images/bat_flapping.gif');
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width:50px;
+		height:50px;
+		position:absolute;
+	}
+        
+
+    </style>
+    
+    </head>
+    <body>
+        <div id="container">
+            <div id='attackUp'>
+                <div class='attackUp' style='top:250px; left:200px;'></div>
+                <div class='attackUp' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='attackRight'>
+                <div class='attackRight' style='top:250px; left:200px;'></div>
+                <div class='attackRight' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='attackLeft'>
+                <div class='attackLeft' style='top:250px; left:200px;'></div>
+                <div class='attackLeft' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='attackDown'>
+                <div class='attackDown' style='top:250px; left:200px;'></div>
+                <div class='attackDown' style='top:350px; left:200px;'></div>
+            </div>
+            <div id='enemies'>
+                <div class='enemy1'></div>
+                <div class='enemy1'></div>
+            </div>
+            <div id="world"></div>
+            <div id="link_guy"></div>
+            <div class="brick"></div>
+            <div id="score">Yum</div>
+        </div>
+        <script>
+
+            var world = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,12,12,12,1],
+                [1,12,12,12,12,12,12,12,12,8,8,8,1],
+                [1,12,12,12,12,12,12,12,12,8,5,8,1],
+                [1,0,12,12,12,12,12,12,12,8,8,8,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world2 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,2,2,2,8,8,8,8,8,8,8,8,1],
+                [1,2,6,2,8,8,8,8,8,8,8,8,1],
+                [1,2,2,2,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,1,1,1,1,1,8,1,1,1,1,1,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,8,8,8,8,8,8,8,8,8,8,8,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world3 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,2,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,1,1,1,1,1,2,1],
+                [1,2,2,2,2,1,7,9,2,2,2,2,1],
+                [1,2,2,2,2,1,9,9,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,2,2,2,2,1,2,2,2,2,2,2,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world4 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,1,9,9,9,9,9,9,9,9,9,9,1],
+                [1,13,1,9,9,9,9,9,9,9,9,9,1],
+                [1,11,1,1,9,9,9,9,9,9,9,9,1],
+                [1,9,1,9,1,9,9,9,9,9,9,9,1],
+                [1,9,1,9,1,1,9,9,9,9,9,9,1],
+                [1,9,1,9,1,9,1,9,9,9,9,9,1],
+                [1,9,1,9,1,9,1,1,9,9,9,9,1],
+                [1,9,1,9,1,9,1,9,1,9,9,9,1],
+                [1,9,9,9,9,9,9,9,9,9,9,9,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var world5 = [
+                [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                [1,1,11,11,11,11,11,11,11,11,11,11,1],
+                [1,2,1,11,11,11,11,11,1,11,11,1,1],
+                [1,11,11,1,11,11,11,1,11,1,1,11,1],
+                [1,11,1,11,1,11,11,11,11,11,11,11,1],
+                [1,11,11,11,11,11,11,1,11,11,1,11,1],
+                [1,11,1,11,1,11,1,11,11,11,11,11,1],
+                [1,11,11,11,11,11,11,1,11,11,11,11,1],
+                [1,11,11,11,1,11,1,1,1,11,11,11,1],
+                [1,1,11,1,11,11,11,11,11,11,11,11,1],
+                [1,1,1,1,1,1,1,1,1,1,1,1,1]
+            ];
+
+            var score = 0;
+
+            var link_guy = {
+                x: 1,
+                y: 9,
+            };
+
+            var attackUp = [];
+            
+            var attackRight = [];
+            
+            var attackLeft = [];
+            
+            var attackDown = [];
+
+            var enemies = [
+		{
+			x: 150, y:250, type: 1
+		},
+		{
+			x: 200, y:500, type: 2
+		},
+		{
+			x: 300, y:250, type: 1
+		},
+		{
+			x: 400, y:500, type: 2
+		},
+		{
+			x: 500, y:250, type: 1
+		},
+		{
+			x:600, y:500, type: 2
+		},
+		{
+			x: 700, y:250, type: 1
+		}
+	];
+
+            function displayWorld(){
+                var output ='';
+                for(var i=0; i<world.length; i++){
+                    output += "<div class='row'>";
+                    for(var j=0; j<world[i].length; j++){
+                        if(world[i][j] == 1)
+                            output += "<div class='brick'></div>";
+                        else  if(world[i][j] == 2)
+                            output +="<div class='purple_rupee'></div>";
+                        else if(world[i][j] == 5)
+                            output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 6)
+                            output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 7)
+                            output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 8)
+                            output += "<div class='blue_rupee'></div>";
+                        else if(world[i][j] == 9)
+                            output += "<div class='red_rupee'></div>";
+                        else if(world[i][j] == 11)
+                            output += "<div class='yellow_rupee'></div>";
+                        else if(world[i][j] == 12)
+                            output += "<div class='green_rupee'></div>"; 
+                        else if(world[i][j] == 13)
+                            output += "<div class='stairs'></div>";
+                        else if(world[i][j] == 0)
+                            output +="<div class='empty'></div>";
+                            else if(world[i][j] == 10)
+                            output +="<div class='leftwall'></div>";
+                    }
+                    output +="\n</div>";
+                }
+                document.getElementById('world').innerHTML = output;
+            }
+
+            function displayLink_guy(){
+                document.getElementById('link_guy').style.top = link_guy.y*60 + "px"
+                document.getElementById('link_guy').style.left = link_guy.x*60 + "px"
+            }
+            function displayScore(){
+                document.getElementById('score').innerHTML = score;
+            }
+            displayWorld();
+            displayLink_guy();
+            displayScore();
+            
+            function displayAttackUp(){
+                var output = "";
+		for (var i = 0; i<attackUp.length; i++)
+		{
+			output += "<div class='attackUp' style='top:"+ attackUp[i].y + "px; left:"
+					+attackUp[i].x + "px;'></div>";
+		}
+		document.getElementById('attackUp').innerHTML = output;
+	}
+            function moveAttackUp(){
+		for (var i = 0; i<attackUp.length; i++)
+		{
+			attackUp[i].y -= 5;
+			if (attackUp[i].y <= 1)
+			{
+				removeItem(attackUp, i);
+			}
+		}
+	}
+    function removeItemUp(arr, num)
+	{
+		for (var x = num; x < arr.length-1; x++)
+		{
+			arr[x] = arr[x+1];
+		}
+		arr.pop();
+	}
+	function detectCollisionUp(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackUp.length; h++)
+			{
+				if (attackUp[h].y == 40)
+				{
+					removeItemUp(attackUp, h);
+				}
+			}
+        }
+    }
+//attack right
+    function displayAttackRight(){
+                var output = "";
+		for (var i = 0; i<attackRight.length; i++)
+		{
+			output += "<div class='attackRight' style='top:"+ attackRight[i].y + "px; left:"
+					+attackRight[i].x + "px;'></div>";
+		}
+		document.getElementById('attackRight').innerHTML = output;
+	}
+            function moveAttackRight(){
+		for (var i = 0; i<attackRight.length; i++)
+		{
+			attackRight[i].x += 5;
+			if (attackRight[i].y <= 1)
+			{
+				removeItem(attackRight, i);
+			}
+		}
+	}
+    function removeItemRight(arr, num)
+	{
+		for (var x = num; x < arr.length-1; x++)
+		{
+			arr[x] = arr[x+1];
+		}
+		arr.pop();
+	}
+	function detectCollisionRight(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackRight.length; h++)
+			{
+				if (attackRight[h].x == 720)
+				{
+					removeItemRight(attackRight, h);
+				}
+			}
+        }
+    }
+//attack left
+    function displayAttackLeft(){
+                var output = "";
+		for (var i = 0; i<attackLeft.length; i++)
+		{
+			output += "<div class='attackLeft' style='top:"+ attackLeft[i].y + "px; left:"
+					+attackLeft[i].x + "px;'></div>";
+		}
+		document.getElementById('attackLeft').innerHTML = output;
+	}
+            function moveAttackLeft(){
+		for (var i = 0; i<attackLeft.length; i++)
+		{
+			attackLeft[i].x -= 5;
+			if (attackLeft[i].y <= 1)
+			{
+				removeItemLeft(attackLeft, i);
+			}
+		}
+	}
+    function removeItemLeft(arr, num)
+	{
+		for (var x = num; x < arr.length-1; x++)
+		{
+			arr[x] = arr[x+1];
+		}
+		arr.pop();
+	}
+	function detectCollisionLeft(){
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackLeft.length; h++)
+			{
+				if (attackLeft[h].x == 50)
+				{
+					removeItemLeft(attackLeft, h);
+				}
+			}
+        }
+    }
+//attack down -working on this
+function displayAttackDown(){
+                var output = "";
+		for (var i = 0; i<attackDown.length; i++)
+		{
+			output += "<div class='attackDown' style='top:"+ attackDown[i].y + "px; left:"
+					+attackDown[i].x + "px;'></div>";
+		}
+		document.getElementById('attackDown').innerHTML = output;
+	}
+            function moveAttackDown(){
+		for (var i = 0; i<attackDown.length; i++)
+		{
+			attackDown[i].y += 5;
+		}
+	}
+
+    function removeItemDown(arr, num)
+	{
+		for (var x = num; x < arr.length-1; x++)
+		{
+			arr[x] = arr[x+1];
+		}
+		arr.pop();
+	}
+// working on making in map detection for inside map
+	function detectCollisionDown(){
+        
+		for (var i = 0; i < world.length;i++)
+		{
+			for (var h = 0; h < attackDown.length; h++)
+			{{
+            let elem = document.querySelector('div.brick');
+            var rect = elem.getBoundingClientRect();
+            }
+				if (attackDown[h].y == rect.bottom+550)
+				{
+					removeItemDown(attackDown, h);
+				}
+			}
+        }
+    }
+
+    //enemy
+
+    function displayEnemies(){
+		var output = "";
+		for (var i = 0; i<enemies.length; i++)
+		{
+			if (enemies[i].type == 1)
+			{
+				output += "<div class='enemy1' style='top:"+ enemies[i].y + "px; left:"
+					+enemies[i].x + "px;'></div>";
+			}
+			else {
+				output += "<div class='enemy2' style='top:"+ enemies[i].y + "px; left:"
+					+enemies[i].x + "px;'></div>";
+			}
+		}
+		document.getElementById('enemies').innerHTML = output;
+	}
+
+	function moveEnemies(){
+		for (var i = 0; i<enemies.length; i++)
+		{
+			enemies[i].y += 3;
+			if (enemies[i].y > 580)
+			{
+				enemies[i].y = 0;
+				enemies[i].x = Math.round(Math.random()*650);
+                
+			}
+		}
+	}
+    /////////////////////////////////WORKING ON THIS STILL///////////////////////////////
+    function detectCollisionPlayerEnemy(){
+    for (var i = 0; i < enemies.length;i++)
+		{
+                if ((Math.abs(link_guy.x*60 - enemies[i].x) <= 60) && (Math.abs(link_guy.y*60 - enemies[i].y) <= 60))
+				{
+					enemies[i].y = 0;
+					enemies[i].x = Math.round(Math.random()*650);
+                    const myobj = document.getElementById('link_guy');
+                    myobj.remove();
+                    return;
+					score -= 500;
+				}
+
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////
+// enemy hit detection
+	function detectCollisionEnemyDown(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackDown.length; h++)
+			{
+				if ((Math.abs(attackDown[h].x - enemies[i].x) < 60) && (Math.abs(attackDown[h].y - enemies[i].y) < 60))
+				{
+					removeItemDown(attackDown, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.round(Math.random()*650);
+					score += 3;
+				}
+			}
+		}
+	}
+    function detectCollisionEnemyUp(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackUp.length; h++)
+			{
+				if ((Math.abs(attackUp[h].x - enemies[i].x) < 60) && (Math.abs(attackUp[h].y - enemies[i].y) < 60))
+				{
+					removeItemUp(attackUp, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.round(Math.random()*650);
+					score += 3;
+				}
+			}
+		}
+	}
+    function detectCollisionEnemyRight(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackRight.length; h++)
+			{
+				if ((Math.abs(attackRight[h].x - enemies[i].x) < 60) && (Math.abs(attackRight[h].y - enemies[i].y) < 60))
+				{
+					removeItemUp(attackRight, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.round(Math.random()*650);
+					score += 3;
+				}
+			}
+		}
+    }
+    function detectCollisionEnemyLeft(){
+		for (var i = 0; i < enemies.length;i++)
+		{
+			for (var h = 0; h < attackLeft.length; h++)
+			{
+				if ((Math.abs(attackLeft[h].x - enemies[i].x) < 60) && (Math.abs(attackLeft[h].y - enemies[i].y) < 60))
+				{
+					removeItemUp(attackLeft, h);
+					enemies[i].y = 0;
+					enemies[i].x = Math.round(Math.random()*650);
+					score += 3;
+				}
+			}
+		}
+    }
+
+    function gameLoop(){
+                    displayScore();
+                    displayAttackUp();
+                    moveAttackUp();
+                    displayAttackRight();
+                    moveAttackRight();
+                    displayAttackLeft();
+                    moveAttackLeft();
+                    displayAttackDown();
+                    moveAttackDown();
+                    displayLink_guy();
+                    detectCollisionDown();
+                    detectCollisionLeft();
+                    detectCollisionRight();
+                    detectCollisionUp();
+                    moveEnemies();
+                    displayEnemies();
+                    detectCollisionEnemyDown();
+                    detectCollisionEnemyUp();
+                    detectCollisionEnemyLeft();
+                    detectCollisionEnemyRight();
+                    detectCollisionPlayerEnemy();
+                }
+
+	setInterval(gameLoop, 20);
+    // console.log(attackDown); proves we need .y to hit detect 
+
+    // moving 
+            document.onkeydown = function(e){
+                if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] != 1){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
+                    link_guy.x--;
+                }
+                else if(e.keyCode == 39 && world[link_guy.y][link_guy.x+1] != 1){
+                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
+                    link_guy.x++;
+                }
+                else if(e.keyCode == 38 && world[link_guy.y-1][link_guy.x] != 1){
+                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
+                    link_guy.y--;
+                }
+                else if(e.keyCode == 40 && world[link_guy.y+1][link_guy.x] != 1){
+                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
+                    link_guy.y += 1;
+                }
+                
+// directional working attack
+
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)") {
+                attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=1;
+            }
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)") {
+                attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=1;
+            }
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)") {
+                attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=1;
+            }
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)") {
+                attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=1;
+            }
+
+            
+                if(world[link_guy.y][link_guy.x] == 5){
+                    world.length = 0;                 
+                    world.push.apply(world, world2);
+                }
+                if(world[link_guy.y][link_guy.x] == 6){
+                    world.length = 0;                 
+                    world.push.apply(world, world3);
+                }
+                if(world[link_guy.y][link_guy.x] == 7){
+                    world.length = 0;                 
+                    world.push.apply(world, world4);
+                }
+                if(world[link_guy.y][link_guy.x] == 13){
+                    world.length = 0;                 
+                    world.push.apply(world, world5);
+                }
+                if(world[link_guy.y][link_guy.x] == 2){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=10;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 8){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=5;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 9){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=20;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 11){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=100;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 12){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=1;
+                    displayWorld();
+                    displayScore();
+                }
+        }
+        </script>
+
+    </body>
+</html>
