@@ -732,19 +732,19 @@ function displayAttackDown(){
 
     // moving 
             document.onkeydown = function(e){
-                if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] != 1){
+                if(e.keyCode == 37 || e.keyCode == 65 && world[link_guy.y][link_guy.x-1] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     link_guy.x--;
                 }
-                else if(e.keyCode == 39 && world[link_guy.y][link_guy.x+1] != 1){
+                else if(e.keyCode == 39 || e.keyCode == 68  && world[link_guy.y][link_guy.x+1] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(-90deg)";
                     link_guy.x++;
                 }
-                else if(e.keyCode == 38 && world[link_guy.y-1][link_guy.x] != 1){
+                else if(e.keyCode == 38  || e.keyCode == 87  && world[link_guy.y-1][link_guy.x] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(-180deg)";
                     link_guy.y--;
                 }
-                else if(e.keyCode == 40 && world[link_guy.y+1][link_guy.x] != 1){
+                else if(e.keyCode == 40  || e.keyCode == 83  && world[link_guy.y+1][link_guy.x] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y += 1;
                 }
