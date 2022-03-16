@@ -228,6 +228,8 @@
             <div id='explosions'>
                 <div class='explosion'></div>
             </div>
+
+            <p id="demo"></p>
         </div>
         <script>
 
@@ -320,7 +322,7 @@
 
             var enemies = [
 		{
-			x: 150, y:250, type: 1
+			x: 200, y:250, type: 1
 		},
 		{
 			x: 200, y:500, type: 2
@@ -338,7 +340,7 @@
 			x:600, y:500, type: 2
 		},
 		{
-			x: 700, y:250, type: 1
+			x: 600, y:250, type: 1
 		}
 	];
 
@@ -591,12 +593,22 @@ function displayAttackDown(){
 					enemies[i].x = Math.round(Math.random()*650);
                     const myobj = document.getElementById('link_guy');
                     myobj.remove();
+                    restartPopUp();
                     return;
 					score -= 500;
 				}
 
         }
     }
+
+    function restartPopUp() {
+
+  alert("Game Over, Please Try Again!");
+  window.location.reload();;
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // enemy hit detection
 	function detectCollisionEnemyDown(){
@@ -758,20 +770,105 @@ function displayAttackDown(){
 
             
                 if(world[link_guy.y][link_guy.x] == 5){
-                    world.length = 0;                 
+                    world.length = 0;
+                    // clear enemy array
+                    enemies = [		{
+                            x: 150, y:250, type: 1
+                        },
+                        {
+                            x: 200, y:500, type: 2
+                        },
+                        {
+                            x: 300, y:250, type: 1
+                        },
+                        {
+                            x: 400, y:500, type: 2
+                        },
+                        {
+                            x: 500, y:250, type: 1
+                        },
+                        {
+                            x:600, y:700, type: 2
+                        },
+                        {
+                            x: 700, y:250, type: 1
+                        }]
                     world.push.apply(world, world2);
                 }
                 if(world[link_guy.y][link_guy.x] == 6){
                     world.length = 0;                 
                     world.push.apply(world, world3);
+                    enemies = [		{
+			x: 150, y:250, type: 1
+		},
+		{
+			x: 200, y:500, type: 2
+		},
+		{
+			x: 300, y:250, type: 1
+		},
+		{
+			x: 400, y:500, type: 2
+		},
+		{
+			x: 500, y:250, type: 1
+		},
+		{
+			x:600, y:700, type: 2
+		},
+		{
+			x: 700, y:250, type: 1
+		}]
                 }
                 if(world[link_guy.y][link_guy.x] == 7){
                     world.length = 0;                 
                     world.push.apply(world, world4);
+                    enemies = [		{
+			x: 150, y:250, type: 1
+		},
+		{
+			x: 200, y:500, type: 2
+		},
+		{
+			x: 300, y:250, type: 1
+		},
+		{
+			x: 400, y:500, type: 2
+		},
+		{
+			x: 500, y:250, type: 1
+		},
+		{
+			x:600, y:700, type: 2
+		},
+		{
+			x: 700, y:250, type: 1
+		}]
                 }
                 if(world[link_guy.y][link_guy.x] == 13){
                     world.length = 0;                 
                     world.push.apply(world, world5);
+                    enemies = [		{
+			x: 150, y:250, type: 1
+		},
+		{
+			x: 200, y:500, type: 2
+		},
+		{
+			x: 300, y:250, type: 1
+		},
+		{
+			x: 400, y:500, type: 2
+		},
+		{
+			x: 500, y:250, type: 1
+		},
+		{
+			x:600, y:700, type: 2
+		},
+		{
+			x: 700, y:250, type: 1
+		}]
                 }
                 if(world[link_guy.y][link_guy.x] == 2){
                     world[link_guy.y][link_guy.x] = 0;
