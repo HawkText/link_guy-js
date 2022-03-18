@@ -35,6 +35,7 @@
         }
         div.brick{
             background-color: rgb(70, 70, 87);
+            background: url("images/wall_test.jpg");
         }
 
         div.empty{
@@ -907,7 +908,6 @@ function detectCollisionEnemyDown(){
         var dontTouch = [1, 10, 16];
 s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
             document.onkeydown = function(e){
-                
                 if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] != 1){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     link_guy.x--;
@@ -940,9 +940,7 @@ s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y += 1;
                 }
-                
 // directional working attack
-
             else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 0) {
                 attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
                 score-=1;
@@ -959,7 +957,17 @@ s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
                 attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
                 score-=1;
             }
+//Working to detect pitfall
+            if(world[link_guy.y][link_guy.x] == 10){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
+                    score+=1000;
+                    restartPopUpPitFall();
+                }
+                function restartPopUpPitFall() {
 
+alert("You Fell Down a Hole, Try Again!");
+window.location.reload();;
+}
 // Level 2
                 if(world[link_guy.y][link_guy.x] == 5){
                     world.length = 0;
@@ -1014,7 +1022,7 @@ enemies = [		{
                 [1,x1,x1,x1,x1,x1,w2,x1,w1,x1,x1,x1,1],
                 [1,x1,x1,w3,w3,x1,w2,x1,x1,w3,w3,x1,1],
                 [1,x1,w1,x1,x1,x1,w2,x1,x1,x1,x1,x1,1],
-                [1,x1,w1,x1,x1,x1,w1,x1,x1,x1,w1,x1,1],
+                [1,x1,w1,x1,w2,x1,w1,x1,x1,x1,w1,x1,1],
                 [1,x1,w1,x1,x1,x1,w1,x1,x1,w1,x1,x1,1],
                 [1,x1,w2,w2,w1,w3,w1,x1,x1,w1,x1,x1,1],
                 [1,x1,x1,15,w1,w3,w2,w2,x1,x1,x1,x1,1],
