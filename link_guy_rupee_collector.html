@@ -136,6 +136,18 @@
             top: 0px;
         }
 
+        div#linkGuyHP{
+            border:1px solid white;
+            width: 58px;
+            height: 58px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(208, 218, 221);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 175px;
+        }
+
         div#kills{
             border:1px solid white;
             width: 58px;
@@ -146,6 +158,18 @@
             outline-color: blue;
             position: absolute;
             top: 58px;
+        }
+
+        div#finalScore{
+            border:1px solid white;
+            width: 790px;
+            height: 670px;
+            color: rgb(17, 5, 6);
+            background-color: rgb(102, 5, 5);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 0px;
         }
 
         div#floor{
@@ -272,6 +296,10 @@
                 <div class='attackDown' style='top:250px; left:200px;'></div>
                 <div class='attackDown' style='top:350px; left:200px;'></div>
             </div>
+            <div id="score">Yum</div>
+            <div id="kills">Kills</div>
+            <div id="linkGuyHP">100 HP</div>
+            <div id="floor">Floor</div> 
             <div id='enemies'>
                 <div class='enemy1'></div>
                 <div class='enemy1'></div>
@@ -279,9 +307,7 @@
             <div id="world"></div>
             <div id="link_guy"></div>
             <div class="brick"></div>
-            <div id="score">Yum</div>
-            <div id="kills">Kills</div>
-            <div id="floor">Floor</div>
+            <div id="finalScore">Score</div>
             <div id='explosions'>
                 <div class='explosion'></div>
             </div>
@@ -297,8 +323,16 @@ var x3 = worldGem[Math.floor(Math.random()*worldGem.length)];
 var x4 = worldGem[Math.floor(Math.random()*worldGem.length)];
 var x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
 
+//
+var worldGemEmpty = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 12);
+var xg1 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+var xg2 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+var xg3 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+var xg4 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+var xg5 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+
 //random walls
-var worldWall = Array(801, 10,801);
+var worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
 var w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
 var w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
 var w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
@@ -321,15 +355,15 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
 //Level 1
             var world = [
                 [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,w1,w2,w2,12,x1,x2,x2,x2,sr1,sr1,803],
-                [800,12,12,w1,12,12,w2,12,12,12,12,12,803],
-                [800,12,12,w3,12,12,w1,w3,w3,w2,12,12,803],
-                [800,12,w5,w3,w5,12,w1,12,12,12,12,12,803],
-                [800,12,w2,12,12,12,w3,12,12,w1,w2,w2,803],
-                [800,12,12,12,12,w2,w1,12,12,w1,8,8,803],
-                [800,12,12,12,12,w2,w1,12,12,w2,5,8,803],
-                [800,0,12,12,12,12,w2,w1,12,8,8,8,803],
+                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
+                [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,x1,xg2,803],
+                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
+                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
+                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
+                [800,xg3,w1,xg1,xg3,w2,w1,xg3,xg5,w2,5,xg5,803],
+                [800,0,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
 
@@ -477,7 +511,8 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             var score = 0;
             var kills = 0;
             var floor = 1;
-
+            var finalScore = 0;
+            var linkGuyHP = 100;
             var link_guy = {
                 x: 1,
                 y: 9,
@@ -581,6 +616,21 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             function displayKills(){
                 document.getElementById('kills').innerHTML = kills;
             }
+            function displayLinkGuyHP(){
+                document.getElementById('linkGuyHP').innerHTML = linkGuyHP;
+            }
+
+            function displayFinalScore(){
+                var x = document.getElementById("finalScore");
+                if (linkGuyHP <= 0) {
+                    x.style.display = "block";
+                        } else {
+                    x.style.display = "none";
+    
+}
+                document.getElementById('finalScore').innerHTML = linkGuyHP;
+
+            }
 
             function displayFloor(){
                 document.getElementById('floor').innerHTML = floor;
@@ -590,7 +640,9 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             displayLink_guy();
             displayScore();
             displayKills();
+            displayLinkGuyHP();
             displayFloor();
+            displayFinalScore();
             
             function displayAttackUp(){
                 var output = "";
@@ -738,17 +790,13 @@ function displayAttackDown(){
 	}
 // working on making in map detection for inside map
 	function detectCollisionDown(){
-        
 		for (var i = 0; i < world.length;i++)
 		{
 			for (var h = 0; h < attackDown.length; h++)
-			{{
-            let elem = document.querySelector('div.brick');
-            var rect = elem.getBoundingClientRect();
-            }
-				if (attackDown[h].y == rect.bottom+550)
+			{
+				if (attackDown[h].y == 600)
 				{
-					removeItemDown(attackDown, h);
+					removeItemLeft(attackDown, h);
 				}
 			}
         }
@@ -785,19 +833,19 @@ function displayAttackDown(){
 			}
 		}
 	}
-    /////////////////////////////////WORKING ON THIS STILL///////////////////////////////
+    /////////////////////////////////WORKING ON THIS STILL/////////////////////////////// enemy player collision enemy hit hit enemy
     function detectCollisionPlayerEnemy(){
     for (var i = 0; i < enemies.length;i++)
 		{
-                if ((Math.abs(link_guy.x*60 - enemies[i].x) <= 45) && (Math.abs(link_guy.y*60 - enemies[i].y) <= 45))
+                if ((Math.abs(link_guy.x*60 - enemies[i].x) <= 45) && (Math.abs(link_guy.y*60 - enemies[i].y) <= 25))
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-                    const myobj = document.getElementById('link_guy');
-                    myobj.remove();
-                    restartPopUp();
-                    return;
 					score -= 500;
+                    linkGuyHP -=25;
+                    if (linkGuyHP <= 0)
+                        score -=50000;
+                        //end game here
 				}
 
         }
@@ -805,8 +853,8 @@ function displayAttackDown(){
 
     function restartPopUp() {
 
-  alert("Game Over, Please Try Again!");
-  window.location.reload();;
+    alert("Game Over, Please Try Again!");
+    window.location.reload();;
 }
 
 
@@ -915,6 +963,8 @@ function detectCollisionEnemyDown(){
                     displayScore();
                     displayKills();
                     displayFloor();
+                    displayLinkGuyHP();
+                    displayFinalScore();
                     displayAttackUp();
                     moveAttackUp();
                     displayAttackRight();
@@ -946,6 +996,7 @@ function detectCollisionEnemyDown(){
 
 //         var dontTouch = [1, 10, 16];
 // s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
+
 var tSet = [1,16];
 function tSetLoop(){
     for (var i = 0; i < tSet.length; i++)
@@ -1013,10 +1064,19 @@ alert("You Fell Down a Hole, Try Again!");
 window.location.reload();;
 }
 // Level 2
-                if(world[link_guy.y][link_guy.x] == 5){
-                    world.length = 0;
-                    floor += 1;
-//random any gem
+if(world[link_guy.y][link_guy.x] == 5){
+    world.length = 0;
+    floor += 1;
+
+    //random gem or empty
+worldGemEmpty = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 12);
+xg1 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg2 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg3 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg4 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg5 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+
+// random gem
 worldGem = Array(2, 8, 9, 11, 12);
 x1 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x2 = worldGem[Math.floor(Math.random()*worldGem.length)];
@@ -1024,7 +1084,8 @@ x3 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x4 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
 //random walls
-worldWall = Array(801, 10,801);
+
+worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
 w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
@@ -1032,12 +1093,13 @@ w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
 //random stairs
-var worldStairs = Array(5, 6, 7, 13, 14, 15);
+worldStairs = Array(5, 6, 7, 13, 14, 15);
 s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s2 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s3 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s4 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s5 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
+//enemy position 
 enemies = [		{
                             x: 150, y:250, type: 1
                         },
@@ -1060,19 +1122,19 @@ enemies = [		{
                             x: 700, y:250, type: 1
                         }]
 
-                    world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,w2,x1,w1,x1,x1,x1,803],
-                [800,x1,x1,w3,w3,x1,w2,x1,x1,w3,w3,x1,803],
-                [800,x1,w1,x1,x1,x1,w2,x1,x1,x1,x1,x1,803],
-                [800,x1,w1,x1,w2,x1,w1,x1,x1,x1,w1,x1,803],
-                [800,x1,w1,x1,x1,x1,w1,x1,x1,w1,x1,x1,803],
-                [800,x1,w2,w2,w1,w3,w1,x1,x1,w1,x1,x1,803],
-                [800,x1,x1,15,w1,w3,w2,w2,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,w2,x1,x1,x1,x1,x1,x1,x1,803],
+                        world = [
+                [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
+                [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
+                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
+                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
+                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
+                [800,xg3,15,xg1,xg3,w2,w1,xg3,xg5,w2,12,xg5,803],
+                [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
-            ];     
+            ];   
             world2 = [
                 [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 [1,2,2,2,8,8,8,8,x2,x2,x2,x2,1],
@@ -1086,88 +1148,22 @@ enemies = [		{
                 [1,8,8,8,8,8,8,8,8,8,8,8,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];                  
-            if(world[link_guy.y][link_guy.x] == 6){
-                    world.length = 0;
-                    floor += 1;
-//random any gem
-worldGem = Array(2, 8, 9, 11, 12);
-x1 = worldGem[Math.floor(Math.random()*worldGem.length)];
-x2 = worldGem[Math.floor(Math.random()*worldGem.length)];
-x3 = worldGem[Math.floor(Math.random()*worldGem.length)];
-x4 = worldGem[Math.floor(Math.random()*worldGem.length)];
-x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
-//random solid objects or pitfalls
-worldWall = Array(801, 10,801);
-w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
-
-//random stairs
-var worldStairs = Array(5, 6, 7, 13, 14, 15);
-s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-s2 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-s3 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-s4 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-s5 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-enemies = [		{
-                            x: 150, y:250, type: 1
-                        },
-                        {
-                            x: 200, y:500, type: 2
-                        },
-                        {
-                            x: 300, y:250, type: 1
-                        },
-                        {
-                            x: 400, y:500, type: 2
-                        },
-                        {
-                            x: 500, y:250, type: 1
-                        },
-                        {
-                            x:600, y:700, type: 2
-                        },
-                        {
-                            x: 700, y:250, type: 1
-                        }]
-
-                    world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,w2,w2,w1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,15,w1,x1,x1,x1,x1,x1,5,x1,803],
-                [800,x1,x1,x1,w2,x1,x1,x1,x1,x1,x1,x1,803],
-                [807,804,804,804,804,804,804,804,804,804,804,804,806]
-            ];
-            world2 = [
-                [1,1,1,1,1,1,1,1,1,1,1,1,1],
-                [1,2,2,2,8,8,8,8,x2,x2,x2,x2,1],
-                [1,2,6,2,8,8,8,8,x1,8,8,8,1],
-                [1,2,2,2,8,8,8,8,x1,8,8,8,1],
-                [1,8,8,8,8,8,8,8,x1,8,8,8,1],
-                [1,1,1,1,1,1,8,1,1,1,1,1,1],
-                [1,8,8,8,8,8,8,8,8,8,8,8,1],
-                [1,8,8,8,8,8,8,8,8,8,8,8,1],
-                [1,8,8,15,8,8,8,8,8,8,8,8,1],
-                [1,8,8,8,8,8,8,8,8,8,8,8,1],
-                [1,1,1,1,1,1,1,1,1,1,1,1,1]
-            ];                  
-
-                }
-                }
-
+            
+                    }
+                
 //Level 4
-                if(world[link_guy.y][link_guy.x] == 13){
-                    world.length = 0;
-                    floor += 1;
-//random any gem
+if(world[link_guy.y][link_guy.x] == 13){
+    world.length = 0;
+    floor += 1;
+//random gem or empty
+worldGemEmpty = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 12);
+xg1 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg2 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg3 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg4 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg5 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+
+// random gem
 worldGem = Array(2, 8, 9, 11, 12);
 x1 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x2 = worldGem[Math.floor(Math.random()*worldGem.length)];
@@ -1175,7 +1171,8 @@ x3 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x4 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
 //random walls
-worldWall = Array(801, 10,801);
+
+worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
 w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
@@ -1183,12 +1180,14 @@ w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
 //random stairs
-var worldStairs = Array(5, 6, 7, 13, 14, 15);
+worldStairs = Array(5, 6, 7, 13, 14, 15);
 s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s2 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s3 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s4 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s5 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
+
+//enemy position 
 enemies = [		{
                             x: 150, y:250, type: 1
                         },
@@ -1210,17 +1209,17 @@ enemies = [		{
                         {
                             x: 700, y:250, type: 1
                         }]
-                    world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,w2,w3,w1,w2,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x2,x1,w1,w2,w3,x1,w1,x1,14,x1,803],
-                [800,x3,x2,x1,w3,w2,w2,x1,x1,w3,x1,x1,803],
-                [800,x1,w1,x1,x1,w1,w3,w4,x1,x1,w1,x1,803],
-                [800,x1,w1,w2,w2,w1,x1,x1,w4,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,w1,x1,x1,w1,x1,w4,803],
-                [800,x1,w2,w2,w1,w3,w1,x1,x1,w1,x1,x1,803],
-                [800,x1,x1,x1,w1,w3,w2,w2,x1,x1,x1,x1,803],
-                [800,w1,x1,x1,x1,x1,x1,x1,x1,x1,w4,x1,803],
+                        world = [
+                [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
+                [800,xg1,12,w2,w2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
+                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
+                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
+                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
+                [800,xg3,xg2,xg1,xg3,w2,w1,xg3,xg5,w2,xg1,xg5,803],
+                [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             world2 = [
@@ -1239,9 +1238,17 @@ enemies = [		{
 
                 }
 //Level 5
-                if(world[link_guy.y][link_guy.x] == 14){
-                    world.length = 0;
-                    floor += 1;
+if(world[link_guy.y][link_guy.x] == 14){
+    world.length = 0;
+    floor += 1;
+//random gem or empty
+worldGemEmpty = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 12);
+xg1 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg2 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg3 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg4 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg5 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+
 //random any gem
 worldGem = Array(2, 8, 9, 11, 12);
 x1 = worldGem[Math.floor(Math.random()*worldGem.length)];
@@ -1249,8 +1256,9 @@ x2 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x3 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x4 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
+
 //random walls
-worldWall = Array(801, 10,801);
+worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
 w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
@@ -1258,7 +1266,7 @@ w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
 //random stairs
-var worldStairs = Array(5, 6, 7, 13, 14, 15);
+worldStairs = Array(5, 6, 7, 13, 14, 15);
 s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s2 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s3 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
@@ -1288,15 +1296,15 @@ enemies = [		{
 
                     world = [
                     [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,w3,x1,w1,x1,x1,x1,803],
-                [800,w3,w2,x1,w3,w2,w2,x1,x1,w3,x3,x1,803],
-                [800,x1,w1,x1,x1,x1,w3,w4,x1,x1,x1,x1,803],
-                [800,x1,w1,x1,x1,x1,x1,x1,w4,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,w1,x1,x1,w1,x1,w4,803],
-                [800,x1,w2,w2,w1,w3,w1,x1,x1,w1,w3,x1,803],
-                [800,x1,x1,x1,w1,w3,w2,w2,w1,x1,5,x1,803],
-                [800,x1,x1,x1,x2,x1,x1,x1,x1,x1,w4,x1,803],
+                [800,w1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
+                [800,xg3,xg4,xg5,xg2,xg5,w3,xg5,w1,xg5,12,xg5,803],
+                [800,w3,w2,xg2,w3,w2,w2,xg2,xg5,w3,xg3,xg4,803],
+                [800,xg5,w1,xg5,xg3,xg2,w3,w4,xg4,xg3,xg1,xg5,803],
+                [800,xg1,w1,xg2,xg4,xg1,xg3,xg5,w4,xg5,xg5,xg4,803],
+                [800,xg4,xg3,xg5,xg2,xg5,w1,xg4,xg5,w1,xg4,w4,803],
+                [800,xg2,w2,w2,w1,w3,w1,xg1,xg5,w1,w3,xg4,803],
+                [800,xg3,xg4,xg1,w1,w3,w2,w2,w1,xg1,5,xg5,803],
+                [800,xg5,xg1,xg4,xg1,xg2,xg5,xg1,xg5,xg5,w4,xg2,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             world2 = [
@@ -1315,10 +1323,19 @@ enemies = [		{
 
                 }
 //Level 3
-                if(world[link_guy.y][link_guy.x] == 15){
-                    world.length = 0;
-                    floor += 1;
-//random any gem
+if(world[link_guy.y][link_guy.x] == 15){
+    world.length = 0;
+    floor += 1;
+
+//random gem or empty
+    worldGemEmpty = Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 12);
+xg1 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg2 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg3 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg4 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+xg5 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
+
+// random gem
 worldGem = Array(2, 8, 9, 11, 12);
 x1 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x2 = worldGem[Math.floor(Math.random()*worldGem.length)];
@@ -1326,7 +1343,8 @@ x3 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x4 = worldGem[Math.floor(Math.random()*worldGem.length)];
 x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
 //random walls
-worldWall = Array(801, 10,801);
+
+worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
 w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
@@ -1334,17 +1352,19 @@ w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
 w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
 //random stairs
-var worldStairs = Array(5, 6, 7, 13, 14, 15);
+worldStairs = Array(5, 6, 7, 13, 14, 15);
 s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s2 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s3 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s4 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 s5 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-                    enemies = [		{
+
+//enemy position 
+enemies = [		{
                             x: 150, y:250, type: 1
                         },
                         {
-                            x: 200+50, y:500, type: 2
+                            x: 200, y:500, type: 2
                         },
                         {
                             x: 300, y:250, type: 1
@@ -1361,17 +1381,17 @@ s5 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
                         {
                             x: 700, y:250, type: 1
                         }]
-                    world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,x1,x1,x1,x1,x1,x1,x1,x1,x1,x1,803],
-                [800,x1,13,x1,x1,x1,w3,x1,w1,x1,x1,x1,803],
-                [800,w3,w2,w3,w3,w2,w2,x1,x1,w3,w3,x1,803],
-                [800,x1,w1,x1,x1,x1,w3,w4,x1,x1,x1,x1,803],
-                [800,x1,w1,x1,x1,x1,x1,x1,w4,x1,x1,x1,803],
-                [800,x1,x1,x1,x1,x1,w1,x1,x1,w1,x1,w4,803],
-                [800,x1,w2,w2,w1,w3,w1,x1,x1,w1,x1,x1,803],
-                [800,x1,x1,x1,w1,w3,w2,w2,x1,x1,x1,x1,803],
-                [800,x1,x1,x1,w2,x1,x1,x1,x1,x1,w4,x1,803],
+                        world = [
+                [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
+                [800,xg1,13,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
+                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
+                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
+                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
+                [800,xg3,12,xg1,xg3,w2,w1,xg3,xg5,w2,xg1,xg5,803],
+                [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             world2 = [
