@@ -628,7 +628,8 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                     x.style.display = "none";
     
 }
-                document.getElementById('finalScore').innerHTML = linkGuyHP;
+                document.getElementById('finalScore').innerHTML = "Score:" + score + "<br/>" + "Floor;" + floor + "<br/>" + "Kills:" + kills;
+
 
             }
 
@@ -841,7 +842,7 @@ function displayAttackDown(){
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					score -= 500;
+					score -= 200;
                     linkGuyHP -=25;
                     if (linkGuyHP <= 0)
                         score -=50000;
