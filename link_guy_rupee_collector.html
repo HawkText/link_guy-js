@@ -1088,13 +1088,8 @@ function tSetLoop(){
             if(world[link_guy.y][link_guy.x] == 10){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     score+=1000;
-                    restartPopUpPitFall();
+                    linkGuyHP = -25;
                 }
-                function restartPopUpPitFall() {
-
-alert("You Fell Down a Hole, Try Again!");
-window.location.reload();;
-}
 // Level 2
 if(world[link_guy.y][link_guy.x] == 5){
     world.length = 0;
