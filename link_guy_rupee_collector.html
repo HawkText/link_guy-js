@@ -161,6 +161,10 @@
         }
 
         div#finalScore{
+            background: url('images/blood_ocean.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             border:1px solid white;
             width: 790px;
             height: 670px;
@@ -170,6 +174,19 @@
             outline-color: blue;
             position: absolute;
             top: 0px;
+        }
+
+        button#finalScoreButton{
+            border:1px solid white;
+            width: 150px;
+            height: 150px;
+            color: rgb(17, 5, 6);
+            background-color: rgb(102, 5, 5);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 260px;
+            left: 320px;
         }
 
         div#floor{
@@ -307,7 +324,9 @@
             <div id="world"></div>
             <div id="link_guy"></div>
             <div class="brick"></div>
+            
             <div id="finalScore">Score</div>
+            <button id="finalScoreButton" onClick="window.location.reload();">Click To Restart</button>
             <div id='explosions'>
                 <div class='explosion'></div>
             </div>
@@ -551,7 +570,9 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
 			x: 600, y:250, type: 1
 		}
 	];
-
+    function refreshPage(){
+    window.location.reload();
+} 
             function displayWorld(){
                 var output ='';
                 for(var i=0; i<world.length; i++){
@@ -624,13 +645,20 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                 var x = document.getElementById("finalScore");
                 if (linkGuyHP <= 0) {
                     x.style.display = "block";
+                    throw new Error("Something went badly wrong!");
                         } else {
                     x.style.display = "none";
-    
-}
+                }
                 document.getElementById('finalScore').innerHTML = "Score:" + score + "<br/>" + "Floor;" + floor + "<br/>" + "Kills:" + kills;
+            }
 
-
+            function displayFinalScoreButton(){
+                var x = document.getElementById('finalScoreButton');
+                if (linkGuyHP <= 0) {
+                    x.style.display = "block";
+                        } else {
+                    x.style.display = "none";
+                }
             }
 
             function displayFloor(){
@@ -643,7 +671,9 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             displayKills();
             displayLinkGuyHP();
             displayFloor();
+            displayFinalScoreButton();
             displayFinalScore();
+
             
             function displayAttackUp(){
                 var output = "";
@@ -842,7 +872,7 @@ function displayAttackDown(){
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
-					score -= 200;
+					score -= 25;
                     linkGuyHP -=25;
                     if (linkGuyHP <= 0)
                         score -=50000;
@@ -965,6 +995,7 @@ function detectCollisionEnemyDown(){
                     displayKills();
                     displayFloor();
                     displayLinkGuyHP();
+                    displayFinalScoreButton();
                     displayFinalScore();
                     displayAttackUp();
                     moveAttackUp();
