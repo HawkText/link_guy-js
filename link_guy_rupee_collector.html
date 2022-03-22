@@ -178,6 +178,36 @@
             top: 58px;
         }
 
+        div#startGame{
+            background: url('images/start_screen_LoL.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border:1px solid white;
+            width: 790px;
+            height: 670px;
+            color: rgb(17, 5, 6);
+            background-color: rgb(102, 5, 5);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 0px;
+        }
+
+
+        button#startGameButton{
+            border:1px solid white;
+            width: 150px;
+            height: 150px;
+            color: rgb(17, 5, 6);
+            background-color: rgb(102, 5, 5);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 260px;
+            left: 320px;
+        }
+
         div#finalScore{
             background: url('images/blood_ocean.gif');
             background-repeat: no-repeat;
@@ -349,10 +379,33 @@
             <div id='explosions'>
                 <div class='explosion'></div>
             </div>
+            <div id="startGame"><button id="startGame" onClick="displayStartGameButton()">Push Start</button></div>
 
             <p id="demo"></p>
         </div>
         <script>
+
+//function to start game - start game menu
+
+
+function displayStartGame(){
+                var x = document.getElementById("startGame");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                        } else {
+                    x.style.display = "none";
+                }
+            }
+            function displayStartGameButton(){
+                var x = document.getElementById("startGame");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                        } else {
+                    x.style.display = "none";
+                }
+            }
+            displayStartGame();
+            displayStartGameButton();
 //random any gem
 var worldGem = Array(2, 8, 9, 11, 12);
 var x1 = worldGem[Math.floor(Math.random()*worldGem.length)];
@@ -545,7 +598,7 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                 [1,1,11,1,11,11,11,11,11,11,11,11,1],
                 [1,1,1,1,1,1,1,1,1,1,1,1,1]
             ];
-
+            var startGame= 0;
             var score = 0;
             var kills = 0;
             var floor = 1;
@@ -1009,8 +1062,9 @@ function detectCollisionEnemyDown(){
 			}
 		}
     }
+
+//Shop keeper stage bonus stage - must spawn on 12 or other gem 
     function cleared(){
-        
         if ((floor % 10) == 0){
         enemies = [];
         world.length = 0;
@@ -1020,15 +1074,15 @@ function detectCollisionEnemyDown(){
             }; 
         world = [
             [800,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,12,12,809,0,808,0,809,12,12,12,803],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
-                [800,12,15,12,12,12,12,12,12,12,12,12,803],
-                [800,12,12,12,12,12,12,12,12,12,12,12,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,809,0,808,0,809,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,15,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,12,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
 
@@ -1112,19 +1166,19 @@ function tSetLoop(){
                     link_guy.y += 1;
                 }
 // directional working attack
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 0) {
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
                 attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
                 score-=5;
             }
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 0) {
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
                 attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
                 score-=5;
             }
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 0) {
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
                 attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
                 score-=5;
             }
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 0) {
+            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
                 attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
                 score-=5;
             }
