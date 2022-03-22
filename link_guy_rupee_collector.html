@@ -186,7 +186,7 @@
             border:1px solid white;
             width: 790px;
             height: 670px;
-            color: rgb(17, 5, 6);
+            color: rgb(245, 220, 222);
             background-color: rgb(102, 5, 5);
             font-size: 30px;
             outline-color: blue;
@@ -379,7 +379,9 @@
             <div id='explosions'>
                 <div class='explosion'></div>
             </div>
-            <div id="startGame"><button id="startGame" onClick="displayStartGameButton()">Push Start</button></div>
+            <div id="startGame">
+                <h2>Use the w,a,s,d or arrow keys and space bar to attack. Becareful attacking costs 5 points and watch your step!</h2>
+                <button id="startGame" onClick="displayStartGameButton()">Click here to start!</button></div>
 
             <p id="demo"></p>
         </div>
@@ -388,7 +390,7 @@
 //function to start game - start game menu
 
 
-function displayStartGame(){
+            function displayStartGame(){
                 var x = document.getElementById("startGame");
                 if (x.style.display === "none") {
                     x.style.display = "block";
@@ -397,6 +399,30 @@ function displayStartGame(){
                 }
             }
             function displayStartGameButton(){
+                linkGuyHP = 100;
+                score = 0;
+                enemies = [		{
+                            x: 150, y:250, type: 1
+                        },
+                        {
+                            x: 200, y:500, type: 2
+                        },
+                        {
+                            x: 300, y:250, type: 1
+                        },
+                        {
+                            x: 400, y:500, type: 2
+                        },
+                        {
+                            x: 500, y:250, type: 1
+                        },
+                        {
+                            x:600, y:700, type: 2
+                        },
+                        {
+                            x: 700, y:250, type: 1
+                        }]
+                        
                 var x = document.getElementById("startGame");
                 if (x.style.display === "none") {
                     x.style.display = "block";
@@ -603,7 +629,7 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             var kills = 0;
             var floor = 1;
             var finalScore = 0;
-            var linkGuyHP = 100;
+            var linkGuyHP = 10000;
             var link_guy = {
                 x: 1,
                 y: 9,
