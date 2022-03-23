@@ -10,7 +10,7 @@
             background: url('images/background_tiles_grey.jpg');
             background-color: black;
         background-repeat: no-repeat;
-        width: 1289px;
+        width: 800px;
         height: 680px;
         background-size: 720px 600px;
             margin: 0px;
@@ -135,6 +135,24 @@
 
         div.shop_fire{
             background: url("images/shop_fire.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 60px;
+            height: 60px;
+        }
+
+        div.shop_heart{
+            background: url("images/shop_heart2.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 60px;
+            height: 60px;
+        }
+
+        div.blue_shard{
+            background: url("images/blue_shard.gif");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -332,7 +350,7 @@
         background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-        width: 1289px;
+        width: 800px;
         height: 680px;
 
 
@@ -422,7 +440,7 @@
                         {
                             x: 700, y:250, type: 1
                         }]
-                        
+
                 var x = document.getElementById("startGame");
                 if (x.style.display === "none") {
                     x.style.display = "block";
@@ -696,6 +714,10 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                             output +="<div class='shop_guy'></div>";
                         else if(world[i][j] == 809)
                             output +="<div class='shop_fire'></div>";
+                        else if(world[i][j] == 810)
+                            output +="<div class='shop_heart'></div>";
+                        else if(world[i][j] == 811)
+                            output +="<div class='blue_shard'></div>";
                         else if(world[i][j] == 10)
                             output +="<div class='pit_fall'></div>";
                         else if(world[i][j] == 0)
@@ -1101,7 +1123,7 @@ function detectCollisionEnemyDown(){
         world = [
             [800,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
-                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,810,0,0,0,12,0,0,0,811,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,809,0,808,0,809,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
