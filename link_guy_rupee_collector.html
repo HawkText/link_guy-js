@@ -471,7 +471,7 @@
                 <button id="downButton" onClick="downButtonTouch()"></button>
                 <button id="leftButton" onClick="leftButtonTouch()"></button>
                 <button id="rightButton" onClick="rightButtonTouch()"></button>
-                <button id="spaceBarButton" onClick="displayStartGameButton()"></button>
+                <button id="spaceBarButton" onClick="spacebarButtonTouch()"></button>
             </div>
             <p id="demo"></p>
         </div>
@@ -502,6 +502,26 @@
                     document.getElementById('link_guy').style.transform = "rotate(-90deg)";
                     link_guy.x++;
                 }
+            }
+
+            function spacebarButtonTouch(){
+            if (document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
+                attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+            else if (document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
+                attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+            else if (document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
+                attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+            else if (document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
+                attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+                
             }
 
             function displayStartGame(){
