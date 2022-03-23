@@ -354,9 +354,8 @@
         height: 680px;
     }
 
-        div#upButton{
+    button#upButton{
             background: url('images/up_arrow_test.jpg');
-
             border:1px solid white;
             width: 60px;
             height: 60px;
@@ -366,7 +365,7 @@
             top: 690px;
             left: 550px;
         }
-        div#downButton{
+        button#downButton{
             background: url('images/down_arrow_test.jpg');
             border:1px solid white;
             width: 60px;
@@ -379,7 +378,7 @@
             top: 760px;
             left: 550px;
         }
-        div#leftButton{
+        button#leftButton{
             background: url('images/left_arrow_test.jpg');
             border:1px solid white;
             width: 60px;
@@ -392,7 +391,7 @@
             top: 760px;
             left: 480px;
         }
-        div#rightButton{
+        button#rightButton{
             background: url('images/right_arrow_test.jpg');
             border:1px solid white;
             width: 60px;
@@ -405,7 +404,7 @@
             top: 760px;
             left: 620px;
         }
-        div#spaceBarButton{
+        button#spaceBarButton{
             background: url('images/space_bar_button.png');
             background-repeat: no-repeat;
             background-position: center;
@@ -468,11 +467,11 @@
                 <button id="startGame" onClick="displayStartGameButton()">Click here to start!</button>
             </div>
             <div>
-                <div id="upButton"></div>
-                <div id="downButton"></div>
-                <div id="leftButton"></div>
-                <div id="rightButton"></div>
-                <div id="spaceBarButton"></div>
+                <button id="upButton" onClick="upButtonTouch()"></button>
+                <button id="downButton" onClick="downButtonTouch()"></button>
+                <button id="leftButton" onClick="leftButtonTouch()"></button>
+                <button id="rightButton" onClick="rightButtonTouch()"></button>
+                <button id="spaceBarButton" onClick="displayStartGameButton()"></button>
             </div>
             <p id="demo"></p>
         </div>
@@ -480,6 +479,30 @@
 
 //function to start game - start game menu
 
+            function upButtonTouch(){
+                if(world[link_guy.y-1][link_guy.x] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
+                    link_guy.y--;
+                }
+            }
+            function downButtonTouch(){
+                if(world[link_guy.y+1][link_guy.x] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
+                    link_guy.y += 1
+                }
+            }
+            function leftButtonTouch(){
+                if(world[link_guy.y][link_guy.x-1] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
+                    link_guy.x--;
+                }
+            }
+            function rightButtonTouch(){
+                if(world[link_guy.y][link_guy.x+1] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
+                    link_guy.x++;
+                }
+            }
 
             function displayStartGame(){
                 var x = document.getElementById("startGame");
