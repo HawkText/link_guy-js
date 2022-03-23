@@ -352,9 +352,75 @@
             background-size: cover;
         width: 800px;
         height: 680px;
-
-
     }
+
+        div#upButton{
+            background: url('images/up_arrow_test.jpg');
+
+            border:1px solid white;
+            width: 60px;
+            height: 60px;
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 690px;
+            left: 550px;
+        }
+        div#downButton{
+            background: url('images/down_arrow_test.jpg');
+            border:1px solid white;
+            width: 60px;
+            height: 60px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(161, 190, 29);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 760px;
+            left: 550px;
+        }
+        div#leftButton{
+            background: url('images/left_arrow_test.jpg');
+            border:1px solid white;
+            width: 60px;
+            height: 60px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(161, 190, 29);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 760px;
+            left: 480px;
+        }
+        div#rightButton{
+            background: url('images/right_arrow_test.jpg');
+            border:1px solid white;
+            width: 60px;
+            height: 60px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(161, 190, 29);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 760px;
+            left: 620px;
+        }
+        div#spaceBarButton{
+            background: url('images/space_bar_button.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            border:1px solid white;
+            width: 200px;
+            height: 60px;
+            color: rgb(161, 20, 32);
+            background-color: rgb(161, 190, 29);
+            font-size: 30px;
+            outline-color: blue;
+            position: absolute;
+            top: 760px;
+            left: 200px;
+        }
 
 
     </style>
@@ -399,8 +465,15 @@
             </div>
             <div id="startGame">
                 <h2>Use the w,a,s,d or arrow keys and space bar to attack. Becareful attacking costs 5 points and watch your step!</h2>
-                <button id="startGame" onClick="displayStartGameButton()">Click here to start!</button></div>
-
+                <button id="startGame" onClick="displayStartGameButton()">Click here to start!</button>
+            </div>
+            <div>
+                <div id="upButton"></div>
+                <div id="downButton"></div>
+                <div id="leftButton"></div>
+                <div id="rightButton"></div>
+                <div id="spaceBarButton"></div>
+            </div>
             <p id="demo"></p>
         </div>
         <script>
