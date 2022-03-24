@@ -478,52 +478,6 @@
         <script>
 
 //function to start game - start game menu
-
-            function upButtonTouch(){
-                if(world[link_guy.y-1][link_guy.x] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
-                    link_guy.y--;
-                }
-            }
-            function downButtonTouch(){
-                if(world[link_guy.y+1][link_guy.x] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
-                    link_guy.y += 1
-                }
-            }
-            function leftButtonTouch(){
-                if(world[link_guy.y][link_guy.x-1] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
-                    link_guy.x--;
-                }
-            }
-            function rightButtonTouch(){
-                if(world[link_guy.y][link_guy.x+1] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
-                    link_guy.x++;
-                }
-            }
-
-            function spacebarButtonTouch(){
-            if (document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
-                attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-            else if (document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
-                attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-            else if (document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
-                attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-            else if (document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
-                attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-                
-            }
-
             function displayStartGame(){
                 var x = document.getElementById("startGame");
                 if (x.style.display === "none") {
@@ -1281,21 +1235,62 @@ function detectCollisionEnemyDown(){
                     detectCollisionEnemyRight();
                     detectCollisionPlayerEnemy();
                     displayAnimation();
+                    test();
                 }
 
 	setInterval(gameLoop, 20);
-    // console.log(attackDown);
 
-    // moving 
+// Touch controls 
+            function upButtonTouch(){
+                if(world[link_guy.y-1][link_guy.x] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
+                    link_guy.y--;
+                    test();
+                }
+            }
+            function downButtonTouch(){
+                if(world[link_guy.y+1][link_guy.x] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
+                    link_guy.y += 1
+                    test();
+                }
+            }
+            function leftButtonTouch(){
+                if(world[link_guy.y][link_guy.x-1] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
+                    link_guy.x--;
+                    test();
+                }
+            }
+            function rightButtonTouch(){
+                if(world[link_guy.y][link_guy.x+1] < 799){
+                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
+                    link_guy.x++;
+                    test();
+                }
+            }
 
-//         var dontTouch = [1, 10, 16];
-// s1 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
-
-var tSet = [1,16];
-function tSetLoop(){
-    for (var i = 0; i < tSet.length; i++)
-		return (tSet[i]);
-}
+            function spacebarButtonTouch(){
+            if (document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
+                attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+            else if (document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
+                attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+            else if (document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
+                attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+            else if (document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
+                attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
+                score-=5;
+            }
+                
+            }
+// key controls
+    function test(){
             document.onkeydown = function(e){
                 if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
@@ -1329,27 +1324,28 @@ function tSetLoop(){
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y += 1;
                 }
-// directional working attack
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
-                attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
-                attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
-                attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
-            else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
-                attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
-                score-=5;
-            }
+// directional attack
+                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
+                    attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
+                    score-=5;
+                }
+                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
+                    attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
+                    score-=5;
+                }
+                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
+                    attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
+                    score-=5;
+                }
+                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
+                    attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
+                    score-=5;
+                }
+            
 //Pit fall death
             if(world[link_guy.y][link_guy.x] == 10){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
-                    linkGuyHP = -25;
+                    linkGuyHP = -250;
                 }
 // Level 2
 if(world[link_guy.y][link_guy.x] == 5){
@@ -1583,7 +1579,7 @@ enemies = [		{
                         }]
 
                     world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [800,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,w1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
                 [800,xg3,xg4,xg5,xg2,xg5,w3,xg5,w1,xg5,12,xg5,803],
                 [800,w3,w2,xg2,w3,w2,w2,xg2,xg5,w3,xg3,xg4,803],
@@ -1728,6 +1724,7 @@ enemies = [		{
                     displayWorld();
                     displayScore();
                 }
+            }
 
         }
 
