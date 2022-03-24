@@ -162,38 +162,71 @@
 
         div#score{
             border:1px solid white;
-            width: 58px;
-            height: 58px;
+            width: 80px;
+            height: 40px;
             color: rgb(161, 20, 32);
             background-color: rgb(161, 190, 29);
-            font-size: 30px;
+            font-size: 25px;
             outline-color: blue;
+            left : 85px;
+            top: 660px;
             position: absolute;
-            top: 0px;
         }
 
         div#linkGuyHP{
+            background: url("images/health_testing.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             border:1px solid white;
-            width: 58px;
-            height: 58px;
+            width: 80px;
+            height: 40px;
             color: rgb(161, 20, 32);
             background-color: rgb(208, 218, 221);
-            font-size: 30px;
+            font-size: 25px;
             outline-color: blue;
+            left:0px;
+            top: 660px;
             position: absolute;
-            top: 175px;
         }
 
         div#kills{
             border:1px solid white;
-            width: 58px;
-            height: 58px;
+            width: 80px;
+            height: 40px;
             color: rgb(17, 5, 6);
             background-color: rgb(102, 5, 5);
-            font-size: 30px;
+            font-size: 25px;
             outline-color: blue;
+            left: 170px;
+            top: 660px;
             position: absolute;
-            top: 58px;
+        }
+
+        div#floor{
+            border:1px solid white;
+            width: 80px;
+            height: 40px;
+            color: rgb(17, 5, 6);
+            background-color: rgb(9, 95, 9);
+            font-size: 25px;
+            outline-color: blue;
+            left: 255px;
+            top: 660px;
+            position: absolute;
+        }
+
+        div#shards{
+            border:1px solid white;
+            width: 80px;
+            height: 40px;
+            color: rgb(23, 231, 16);
+            background-color: rgb(255, 196, 0);
+            font-size: 25px;
+            outline-color: blue;
+            left: 340px;
+            top: 660px;
+            position: absolute;
         }
 
         div#startGame{
@@ -203,7 +236,7 @@
             background-size: cover;
             border:1px solid white;
             width: 790px;
-            height: 670px;
+            height: 710px;
             color: rgb(245, 220, 222);
             background-color: rgb(102, 5, 5);
             font-size: 30px;
@@ -211,7 +244,6 @@
             position: absolute;
             top: 0px;
         }
-
 
         button#startGameButton{
             border:1px solid white;
@@ -233,7 +265,7 @@
             background-size: cover;
             border:1px solid white;
             width: 790px;
-            height: 670px;
+            height: 710px;
             color: rgb(17, 5, 6);
             background-color: rgb(102, 5, 5);
             font-size: 30px;
@@ -253,18 +285,6 @@
             position: absolute;
             top: 260px;
             left: 320px;
-        }
-
-        div#floor{
-            border:1px solid white;
-            width: 58px;
-            height: 58px;
-            color: rgb(17, 5, 6);
-            background-color: rgb(9, 95, 9);
-            font-size: 30px;
-            outline-color: blue;
-            position: absolute;
-            top: 116px;
         }
 
         .attackUp{
@@ -449,17 +469,17 @@
                 <div class='attackDown' style='top:250px; left:200px;'></div>
                 <div class='attackDown' style='top:350px; left:200px;'></div>
             </div>
-            <div id="score">Yum</div>
-            <div id="kills">Kills</div>
-            <div id="linkGuyHP"></div>
-            <div id="floor">Floor</div> 
             <div id='enemies'>
                 <div class='enemy1'></div>
                 <div class='enemy1'></div>
             </div>
             <div id="world"></div>
             <div id="link_guy"></div>
-
+            <div id="score">Yum</div>
+            <div id="kills">Kills</div>
+            <div id="linkGuyHP"></div>
+            <div id="floor">Floor</div> 
+            <div id="shards">Shards</div> 
             <div class="brick"></div>
             
             <div id="finalScore">Score</div>
@@ -583,7 +603,10 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             var score = 0;
             var kills = 0;
             var floor = 1;
+            var shards = 0;
             var finalScore = 0;
+
+            //must start with this much HP due to starting screen currently running game in background and hero getting hit
             var linkGuyHP = 10000;
             var link_guy = {
                 x: 1,
@@ -645,9 +668,9 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                             output +="<div class='shop_guy'></div>";
                         else if(world[i][j] == 809)
                             output +="<div class='shop_fire'></div>";
-                        else if(world[i][j] == 810)
+                        else if(world[i][j] == 400)
                             output +="<div class='shop_heart'></div>";
-                        else if(world[i][j] == 811)
+                        else if(world[i][j] == 401)
                             output +="<div class='blue_shard'></div>";
                         else if(world[i][j] == 10)
                             output +="<div class='pit_fall'></div>";
@@ -689,11 +712,15 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                 document.getElementById('score').innerHTML = score;
             }
 
+            function displayShards(){
+                document.getElementById('shards').innerHTML = shards;
+            }
+
             function displayKills(){
                 document.getElementById('kills').innerHTML = kills;
             }
             function displayLinkGuyHP(){
-                document.getElementById('linkGuyHP').innerHTML = linkGuyHP;
+                document.getElementById('linkGuyHP').innerHTML = "HP" + linkGuyHP;
             }
 
             function displayFinalScore(){
@@ -704,7 +731,7 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                         } else {
                     x.style.display = "none";
                 }
-                document.getElementById('finalScore').innerHTML = "Score:" + score + "<br/>" + "Floor;" + floor + "<br/>" + "Kills:" + kills;
+                document.getElementById('finalScore').innerHTML = "Score:" + score + "<br/>" + "Floor;" + floor + "<br/>" + "Kills:" + kills +"<br/>" + "Shards:" + shards;
             }
 
             function displayFinalScoreButton(){
@@ -724,6 +751,7 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             displayLink_guy();
             displayScore();
             displayKills();
+            displayShards();
             displayLinkGuyHP();
             displayFloor();
             displayFinalScoreButton();
@@ -928,8 +956,6 @@ function displayAttackDown(){
 					enemies[i].x = Math.round(Math.random()*650);
 					score -= 25;
                     linkGuyHP -=25;
-                    if (linkGuyHP <= 0)
-                        score -=50000;
                         //end game here
 				}
         }
@@ -1041,7 +1067,7 @@ function detectCollisionEnemyDown(){
         world = [
             [800,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
-                [800,0,810,0,0,0,12,0,0,0,811,0,803],
+                [800,0,400,0,0,0,12,0,0,0,401,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,809,0,808,0,809,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
@@ -1058,6 +1084,7 @@ function detectCollisionEnemyDown(){
                     displayScore();
                     displayKills();
                     displayFloor();
+                    displayShards();
                     displayLinkGuyHP();
                     displayFinalScoreButton();
                     displayFinalScore();
@@ -1522,6 +1549,20 @@ function detectCollisionEnemyDown(){
                     displayWorld();
                     displayScore();
                 }
+                if(world[link_guy.y][link_guy.x] == 400 && score >200){
+                    world[link_guy.y][link_guy.x] = 0;
+                    linkGuyHP += 25;
+                    score -= 200;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 401 && score >500){
+                    world[link_guy.y][link_guy.x] = 0;
+                    shards += 1;
+                    score -= 500;
+                    displayWorld();
+                    displayScore();
+                }
             }
         }
             document.ontouchstart = function(e){
@@ -1936,6 +1977,32 @@ function detectCollisionEnemyDown(){
                 if(world[link_guy.y][link_guy.x] == 12){
                     world[link_guy.y][link_guy.x] = 0;
                     score+=1;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 400){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=1;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 401){
+                    world[link_guy.y][link_guy.x] = 0;
+                    score+=1;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 400 && score >200){
+                    world[link_guy.y][link_guy.x] = 0;
+                    linkGuyHP += 25;
+                    score -= 200;
+                    displayWorld();
+                    displayScore();
+                }
+                if(world[link_guy.y][link_guy.x] == 401 && score >500){
+                    world[link_guy.y][link_guy.x] = 0;
+                    shards += 1;
+                    score -= 500;
                     displayWorld();
                     displayScore();
                 }
