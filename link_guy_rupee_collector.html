@@ -59,6 +59,12 @@
             background: url("images/top_right_pillar.jpg");
         }
 
+        div.top_left_pillar{
+            background-color: rgb(70, 70, 87);
+            background: url("images/top_right_pillar.jpg");
+            transform: rotate(270deg);
+        }
+
         div.bottom_right_pillar{
             background-color: rgb(70, 70, 87);
             background: url("images/bottom_right_pillar.jpg");
@@ -160,10 +166,24 @@
             height: 60px;
         }
 
+        div.heart_200{
+            background: url("images/price_mat.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        div.shard_500{
+            background: url("images/price_mat.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
         div#score{
             border:1px solid white;
             width: 80px;
-            height: 40px;
+            height: 60px;
             color: rgb(161, 20, 32);
             background-color: rgb(161, 190, 29);
             font-size: 25px;
@@ -174,13 +194,9 @@
         }
 
         div#linkGuyHP{
-            background: url("images/health_testing.png");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
             border:1px solid white;
             width: 80px;
-            height: 40px;
+            height: 60px;
             color: rgb(161, 20, 32);
             background-color: rgb(208, 218, 221);
             font-size: 25px;
@@ -193,7 +209,7 @@
         div#kills{
             border:1px solid white;
             width: 80px;
-            height: 40px;
+            height: 60px;
             color: rgb(17, 5, 6);
             background-color: rgb(102, 5, 5);
             font-size: 25px;
@@ -206,7 +222,7 @@
         div#floor{
             border:1px solid white;
             width: 80px;
-            height: 40px;
+            height: 60px;
             color: rgb(17, 5, 6);
             background-color: rgb(9, 95, 9);
             font-size: 25px;
@@ -219,7 +235,7 @@
         div#shards{
             border:1px solid white;
             width: 80px;
-            height: 40px;
+            height: 60px;
             color: rgb(23, 231, 16);
             background-color: rgb(255, 196, 0);
             font-size: 25px;
@@ -236,7 +252,7 @@
             background-size: cover;
             border:1px solid white;
             width: 790px;
-            height: 710px;
+            height: 720px;
             color: rgb(245, 220, 222);
             background-color: rgb(102, 5, 5);
             font-size: 30px;
@@ -249,12 +265,11 @@
             border:1px solid white;
             width: 150px;
             height: 150px;
-            color: rgb(17, 5, 6);
-            background-color: rgb(102, 5, 5);
+            color: rgb(129, 127, 127);
+            background-color: rgb(0, 0, 0);
             font-size: 30px;
-            outline-color: blue;
             position: absolute;
-            top: 260px;
+            top: 400px;
             left: 320px;
         }
 
@@ -265,7 +280,7 @@
             background-size: cover;
             border:1px solid white;
             width: 790px;
-            height: 710px;
+            height: 720px;
             color: rgb(17, 5, 6);
             background-color: rgb(102, 5, 5);
             font-size: 30px;
@@ -489,7 +504,7 @@
             </div>
             <div id="startGame">
                 <h2>Use the w,a,s,d or arrow keys and space bar to attack. Becareful attacking costs 5 points and watch your step!</h2>
-                <button id="startGame" onClick="displayStartGameButton()">Click here to start!</button>
+                <button id="startGameButton" onClick="displayStartGameButton()">Click here to start!</button>
             </div>
             <div>
                 <button id="upButton"></button>
@@ -586,7 +601,7 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
 
 //Level 1
             var world = [
-                [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [810,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                 [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,x1,xg2,803],
                 [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
@@ -660,6 +675,8 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                             output +="<div class='bottom_wall'></div>";
                         else if(world[i][j] == 805)
                             output +="<div class='top_right_pillar'></div>";
+                        else if(world[i][j] == 810)
+                            output +="<div class='top_left_pillar'></div>";
                         else if(world[i][j] == 806)
                             output +="<div class='bottom_right_pillar'></div>";
                         else if(world[i][j] == 807)
@@ -668,6 +685,10 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                             output +="<div class='shop_guy'></div>";
                         else if(world[i][j] == 809)
                             output +="<div class='shop_fire'></div>";
+                        else if(world[i][j] == 615)
+                            output +="<div class='heart_200'></div>";
+                        else if(world[i][j] == 616)
+                            output +="<div class='shard_500'></div>";
                         else if(world[i][j] == 400)
                             output +="<div class='shop_heart'></div>";
                         else if(world[i][j] == 401)
@@ -708,19 +729,21 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                 document.getElementById('link_guy').style.top = link_guy.y*60 + "px"
                 document.getElementById('link_guy').style.left = link_guy.x*60 + "px"
             }
+
             function displayScore(){
-                document.getElementById('score').innerHTML = score;
+                document.getElementById('score').innerHTML = "Score:" + "<br/>" +  score;
             }
-
             function displayShards(){
-                document.getElementById('shards').innerHTML = shards;
+                document.getElementById('shards').innerHTML = "Shards:" + "<br/>" +  shards;
             }
-
             function displayKills(){
-                document.getElementById('kills').innerHTML = kills;
+                document.getElementById('kills').innerHTML = "Kills:" + "<br/>" +  kills;
             }
             function displayLinkGuyHP(){
-                document.getElementById('linkGuyHP').innerHTML = "HP" + linkGuyHP;
+                document.getElementById('linkGuyHP').innerHTML = "Health:" + "<br/>" + linkGuyHP;
+            }
+            function displayFloor(){
+                document.getElementById('floor').innerHTML = "Floor:" + "<br/>" + floor;
             }
 
             function displayFinalScore(){
@@ -741,10 +764,6 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
                         } else {
                     x.style.display = "none";
                 }
-            }
-
-            function displayFloor(){
-                document.getElementById('floor').innerHTML = floor;
             }
 
             displayWorld();
@@ -1065,17 +1084,17 @@ function detectCollisionEnemyDown(){
                 y: 9,
             }; 
         world = [
-            [800,802,802,802,802,802,802,802,802,802,802,802,805],
+            [810,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,400,0,0,0,12,0,0,0,401,0,803],
-                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,615,0,0,0,0,0,0,0,616,0,803],
                 [800,0,0,0,809,0,808,0,809,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,15,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,12,803],
-                [807,804,804,804,804,804,804,804,804,804,804,804,806]
+                [807,804,804,804,804,804,804,804,804,804,804,804,806],
             ];
         }
     }
@@ -1287,7 +1306,7 @@ function detectCollisionEnemyDown(){
                                 x: 700, y:250, type: 1
                             }]
                             world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                    [810,802,802,802,802,802,802,802,802,802,802,802,805],
                     [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                     [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
                     [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
@@ -1360,7 +1379,7 @@ function detectCollisionEnemyDown(){
                                 x: 700, y:250, type: 1
                             }]
                             world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                    [810,802,802,802,802,802,802,802,802,802,802,802,805],
                     [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                     [800,xg1,12,w2,w2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
                     [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
@@ -1431,7 +1450,7 @@ function detectCollisionEnemyDown(){
                                 x: 700, y:250, type: 1
                             }]
                         world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                    [810,802,802,802,802,802,802,802,802,802,802,802,805],
                     [800,w1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
                     [800,xg3,xg4,xg5,xg2,xg5,w3,xg5,w1,xg5,12,xg5,803],
                     [800,w3,w2,xg2,w3,w2,w2,xg2,xg5,w3,xg3,xg4,803],
@@ -1505,7 +1524,7 @@ function detectCollisionEnemyDown(){
                             x: 700, y:250, type: 1
                         }]
                         world = [
-                [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [810,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                 [800,xg1,13,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
                 [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
@@ -1718,7 +1737,7 @@ function detectCollisionEnemyDown(){
                                 x: 700, y:250, type: 1
                             }]
                             world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                    [810,802,802,802,802,802,802,802,802,802,802,802,805],
                     [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                     [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
                     [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
@@ -1791,7 +1810,7 @@ function detectCollisionEnemyDown(){
                                 x: 700, y:250, type: 1
                             }]
                             world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                    [810,802,802,802,802,802,802,802,802,802,802,802,805],
                     [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                     [800,xg1,12,w2,w2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
                     [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
@@ -1862,7 +1881,7 @@ function detectCollisionEnemyDown(){
                                 x: 700, y:250, type: 1
                             }]
                         world = [
-                    [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                    [810,802,802,802,802,802,802,802,802,802,802,802,805],
                     [800,w1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
                     [800,xg3,xg4,xg5,xg2,xg5,w3,xg5,w1,xg5,12,xg5,803],
                     [800,w3,w2,xg2,w3,w2,w2,xg2,xg5,w3,xg3,xg4,803],
@@ -1936,7 +1955,7 @@ function detectCollisionEnemyDown(){
                             x: 700, y:250, type: 1
                         }]
                         world = [
-                [800,802,802,802,802,802,802,802,802,802,802,802,805],
+                [810,802,802,802,802,802,802,802,802,802,802,802,805],
                 [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
                 [800,xg1,13,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
                 [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
