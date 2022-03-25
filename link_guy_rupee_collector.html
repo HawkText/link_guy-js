@@ -378,6 +378,16 @@
 		position: absolute;
 	}
 
+    .bloodBurst{
+		background: url('images/blood_splatter.gif') no-repeat center;
+        background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+		width: 640px;
+		height: 640px;
+		position: absolute;
+	}
+
 
     div.container{
         background: url('images/background.jpg.');
@@ -497,10 +507,14 @@
             <div class="brick"></div>
             
             <div id="finalScore">Score</div>
+            <div id='bloodBursts'>
+                <div class='bloodBurst'></div>
+            </div>
             <button id="finalScoreButton" onClick="window.location.reload();">Click To Restart</button>
             <div id='explosions'>
                 <div class='explosion'></div>
             </div>
+
             <div id="startGame">
                 <h2>Use the w,a,s,d or arrow keys and space bar to attack. Becareful attacking costs 5 points and watch your step!</h2>
                 <button id="startGameButton" onClick="displayStartGameButton()">Click here to start!</button>
@@ -631,6 +645,7 @@ var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
             var attackLeft = [];
             var attackDown = [];
             var explosions = [];
+            var bloodBursts = [];
             var enemies = [
 		{
 			x: 200, y:250, type: 1
@@ -972,6 +987,7 @@ function displayAttackDown(){
 				{
 					enemies[i].y = 0;
 					enemies[i].x = Math.round(Math.random()*650);
+                    bloodBursts.push({x: link_guy.x, y: link_guy.y, count: 0});
 					score -= 25;
                     linkGuyHP -=25;
                         //end game here
@@ -993,6 +1009,20 @@ function displayAnimation()
 				removeItem(explosions, i);
 		}
 		document.getElementById('explosions').innerHTML = output;
+	}
+
+    function displayAnimationPlayerHit()
+	{
+		var output = "";
+		for (var i = 0; i<bloodBursts.length; i++)
+		{
+			bloodBursts[i].count++;
+			output += "<div class='bloodBurst' style='top:"+ bloodBursts[i].y + "px; left:"
+					+bloodBursts[i].x + "px;'></div>";
+			if (bloodBursts[i].count > 15 )
+				removeItem(bloodBursts, i);
+		}
+		document.getElementById('bloodBursts').innerHTML = output;
 	}
 
 function detectCollisionEnemyDown(){
@@ -1098,7 +1128,8 @@ function detectCollisionEnemyDown(){
         }
     }
     function winnerScreen(){
-        if (shards == 4){
+        if (shards == 1){
+        document.body.style.backgroundImage ="url('images/rick_roll_win.gif')";
         enemies = [];
         world.length = 0;
         link_guy = {
@@ -1114,10 +1145,11 @@ function detectCollisionEnemyDown(){
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,0,803],
-                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,15,0,0,0,0,0,0,0,0,0,803],
                 [800,0,0,0,0,0,0,0,0,0,0,12,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806],
             ];
+            shards = 0;
         }
     }
     function gameLoop(){
@@ -1149,6 +1181,7 @@ function detectCollisionEnemyDown(){
                     detectCollisionEnemyRight();
                     detectCollisionPlayerEnemy();
                     displayAnimation();
+                    displayAnimationPlayerHit();
                 }
 	setInterval(gameLoop, 20);
 
