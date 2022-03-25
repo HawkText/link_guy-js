@@ -61,8 +61,7 @@
 
         div.top_left_pillar{
             background-color: rgb(70, 70, 87);
-            background: url("images/top_right_pillar.jpg");
-            transform: rotate(270deg);
+            background: url("images/top_left_pillar.jpg");
         }
 
         div.bottom_right_pillar{
@@ -401,7 +400,7 @@
             width: 150px;
             height: 150px;
             position: absolute;
-            top: 690px;
+            top: 725px;
             left: 460px;
         }
         button#downButton{
@@ -429,7 +428,7 @@
             color: rgb(161, 20, 32);
             background-color: rgb(161, 190, 29);
             position: absolute;
-            top: 800px;
+            top: 820px;
             left: 300px;
         }
         button#rightButton{
@@ -443,7 +442,7 @@
             color: rgb(161, 20, 32);
             background-color: rgb(161, 190, 29);
             position: absolute;
-            top: 800px;
+            top: 820px;
             left: 620px;
         }
         button#spaceBarButton{
@@ -1098,7 +1097,29 @@ function detectCollisionEnemyDown(){
             ];
         }
     }
-
+    function winnerScreen(){
+        if (shards == 4){
+        enemies = [];
+        world.length = 0;
+        link_guy = {
+                x: 11,
+                y: 9,
+            }; 
+        world = [
+            [810,802,802,802,802,802,802,802,802,802,802,802,805],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,400,0,0,0,12,0,0,0,401,0,803],
+                [800,0,615,0,0,0,0,0,0,0,616,0,803],
+                [800,0,0,0,809,0,0,0,809,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,0,803],
+                [800,0,0,0,0,0,0,0,0,0,0,12,803],
+                [807,804,804,804,804,804,804,804,804,804,804,804,806],
+            ];
+        }
+    }
     function gameLoop(){
                     displayScore();
                     displayKills();
@@ -1151,48 +1172,71 @@ function detectCollisionEnemyDown(){
                 score-=5;
             }
         }
-// key controls
-
+// key controls keyboard controls 
             document.onkeydown = function(e){
                 if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     link_guy.x--;
                     test2();
                 }
+                else if(e.keyCode == 37){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
+                }
                 else if(e.keyCode == 39 && world[link_guy.y][link_guy.x+1] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-90deg)";
                     link_guy.x++;
                     test2();
+                }
+                else if(e.keyCode == 39){
+                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
                 }
                 else if(e.keyCode == 38 && world[link_guy.y-1][link_guy.x] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-180deg)";
                     link_guy.y--;
                     test2();
                 }
+                else if(e.keyCode == 38){
+                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
+                }
                 else if(e.keyCode == 40 && world[link_guy.y+1][link_guy.x] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y += 1;
                     test2();
+                }
+                else if(e.keyCode == 40){
+                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                 }
                 else if(e.keyCode == 65 && world[link_guy.y][link_guy.x-1] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     link_guy.x--;
                     test2();
                 }
+                else if(e.keyCode == 65){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
+                }
                 else if(e.keyCode == 68 && world[link_guy.y][link_guy.x+1] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-90deg)";
                     link_guy.x++;
                     test2();
+                }
+                else if(e.keyCode == 68){
+                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
                 }
                 else if(e.keyCode == 87 && world[link_guy.y-1][link_guy.x] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-180deg)";
                     link_guy.y--;
                     test2();
                 }
+                else if(e.keyCode == 87){
+                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
+                }
                 else if(e.keyCode == 83 && world[link_guy.y+1][link_guy.x] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                     link_guy.y += 1;
                     test2();
+                }
+                else if(e.keyCode == 83){
+                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
                 }
 // directional attack
                 else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
@@ -1211,8 +1255,8 @@ function detectCollisionEnemyDown(){
                     attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
                     score-=5;
                 }
-// touch direction 
-                document.getElementById('upButton').onclick = function(){
+// touch direction do i need it here?
+            document.getElementById('upButton').onclick = function(){
                 if(world[link_guy.y-1][link_guy.x] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-180deg)";
                     link_guy.y--;
@@ -1319,6 +1363,7 @@ function detectCollisionEnemyDown(){
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];                   
                 cleared();
+                winnerScreen();
                         }
     //Level 4
     if(world[link_guy.y][link_guy.x] == 13){
@@ -1392,6 +1437,7 @@ function detectCollisionEnemyDown(){
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
+                winnerScreen();
                     }
     //Level 5
     if(world[link_guy.y][link_guy.x] == 14){
@@ -1463,6 +1509,7 @@ function detectCollisionEnemyDown(){
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
+                winnerScreen();
                     }
     //Level 3
     if(world[link_guy.y][link_guy.x] == 15){
@@ -1537,6 +1584,7 @@ function detectCollisionEnemyDown(){
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             cleared();
+            winnerScreen();
                 }
                 if(world[link_guy.y][link_guy.x] == 2){
                     world[link_guy.y][link_guy.x] = 0;
@@ -1584,70 +1632,16 @@ function detectCollisionEnemyDown(){
                 }
             }
         }
+        // touch direction touch controls working on mobile
             document.ontouchstart = function(e){
-                if(e.keyCode == 37 && world[link_guy.y][link_guy.x-1] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
-                    link_guy.x--;
-                    test2();
-                }
-                else if(e.keyCode == 39 && world[link_guy.y][link_guy.x+1] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
-                    link_guy.x++;
-                    test2();
-                }
-                else if(e.keyCode == 38 && world[link_guy.y-1][link_guy.x] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
-                    link_guy.y--;
-                    test2();
-                }
-                else if(e.keyCode == 40 && world[link_guy.y+1][link_guy.x] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
-                    link_guy.y += 1;
-                    test2();
-                }
-                else if(e.keyCode == 65 && world[link_guy.y][link_guy.x-1] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
-                    link_guy.x--;
-                    test2();
-                }
-                else if(e.keyCode == 68 && world[link_guy.y][link_guy.x+1] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
-                    link_guy.x++;
-                    test2();
-                }
-                else if(e.keyCode == 87 && world[link_guy.y-1][link_guy.x] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
-                    link_guy.y--;
-                    test2();
-                }
-                else if(e.keyCode == 83 && world[link_guy.y+1][link_guy.x] < 799){
-                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
-                    link_guy.y += 1;
-                    test2();
-                }
-// directional attack
-                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(90deg)" && score >= 5) {
-                    attackLeft.push({x: link_guy.x*60, y: link_guy.y*60});
-                    score-=5;
-                }
-                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-90deg)" && score >= 5) {
-                    attackRight.push({x: link_guy.x*60, y: link_guy.y*60});
-                    score-=5;
-                }
-                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-180deg)" && score >= 5) {
-                    attackUp.push({x: link_guy.x*60, y: link_guy.y*60});
-                    score-=5;
-                }
-                else if (e.keyCode == 32 && document.getElementById('link_guy').style.transform == "rotate(-360deg)" && score >= 5) {
-                    attackDown.push({x: link_guy.x*60, y: link_guy.y*60});
-                    score-=5;
-                }
-// touch direction 
-                document.getElementById('upButton').onclick = function(){
+            document.getElementById('upButton').onclick = function(){
                 if(world[link_guy.y-1][link_guy.x] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(-180deg)";
                     link_guy.y--;
                     test2();
+                }
+                else if(linkGuyHP >=0){
+                    document.getElementById('link_guy').style.transform = "rotate(-180deg)";
                 }
             }
             document.getElementById('downButton').onclick = function(){
@@ -1656,12 +1650,18 @@ function detectCollisionEnemyDown(){
                     link_guy.y += 1
                     test2();
                 }
+                else if(linkGuyHP >=0){
+                    document.getElementById('link_guy').style.transform = "rotate(-360deg)";
+                }
             }
             document.getElementById('leftButton').onclick = function(){
                 if(world[link_guy.y][link_guy.x-1] < 799){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     link_guy.x--;
                     test2();
+                }
+                else if(linkGuyHP >=0){
+                    document.getElementById('link_guy').style.transform = "rotate(90deg)";
                 }
             }
             document.getElementById('rightButton').onclick = function(){
@@ -1670,8 +1670,11 @@ function detectCollisionEnemyDown(){
                     link_guy.x++;
                     test2();
                 }
+                else if(linkGuyHP >=0){
+                    document.getElementById('link_guy').style.transform = "rotate(-90deg)";
+                }
             }
-            // convert this into a function and call that function on click and key press
+
         function test2(){
 //Pit fall death
             if(world[link_guy.y][link_guy.x] == 10){
@@ -1750,6 +1753,7 @@ function detectCollisionEnemyDown(){
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];                   
                 cleared();
+                winnerScreen();
                         }
     //Level 4
     if(world[link_guy.y][link_guy.x] == 13){
@@ -1823,6 +1827,7 @@ function detectCollisionEnemyDown(){
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
+                winnerScreen();
                     }
     //Level 5
     if(world[link_guy.y][link_guy.x] == 14){
@@ -1894,6 +1899,7 @@ function detectCollisionEnemyDown(){
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
+                winnerScreen();
                     }
     //Level 3
     if(world[link_guy.y][link_guy.x] == 15){
@@ -1968,6 +1974,7 @@ function detectCollisionEnemyDown(){
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             cleared();
+            winnerScreen();
                 }
                 if(world[link_guy.y][link_guy.x] == 2){
                     world[link_guy.y][link_guy.x] = 0;
