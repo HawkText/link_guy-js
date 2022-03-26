@@ -593,12 +593,12 @@ var xg4 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
 var xg5 = worldGemEmpty[Math.floor(Math.random()*worldGemEmpty.length)];
 
 //random walls
-var worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-var w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-var w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-var w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-var w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-var w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+var worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+var wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+var wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+var wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+var wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+var wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
 //random stairs
 var worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -608,22 +608,18 @@ var s3 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 var s4 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 var s5 = worldStairs[Math.floor(Math.random()*worldStairs.length)];
 
-//random stairs or gems
-var superRandom = Array(w1, x1, x2, x3)
-var sr1 = superRandom[Math.floor(Math.random()*superRandom.length)];
-
-//Level 1
+//Level 1 world 1 stage 1
             var world = [
                 [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,x1,xg2,803],
-                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                [800,xg3,w1,xg1,xg3,w2,w1,xg3,xg5,w2,5,xg5,803],
-                [800,0,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                [800,wa1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
+                [800,xg1,wa1,wa2,wa2,xg1,xg2,xg5,xg2,xg1,x1,xg2,803],
+                [800,xg1,xg2,wa1,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,xg5,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,xg5,xg3,803],
+                [800,xg4,wa5,wa3,wa5,xg2,wa1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,wa2,xg2,xg1,xg5,wa3,xg5,xg5,wa1,wa2,wa2,803],
+                [800,xg2,xg5,wa1,xg1,wa2,wa1,xg3,xg4,wa1,xg5,xg5,803],
+                [800,xg3,wa1,xg1,xg3,wa2,wa1,xg3,xg5,wa2,5,xg5,803],
+                [800,0,xg5,xg5,xg3,xg5,wa2,wa1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
 
@@ -1324,7 +1320,7 @@ function detectCollisionEnemyDown(){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     linkGuyHP = -250;
                 }
-// Level 2
+// Level 2 world 2 stage 2
     if(world[link_guy.y][link_guy.x] == 5){
         world.length = 0;
         floor += 1;
@@ -1346,12 +1342,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
     //random walls
 
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1384,21 +1380,21 @@ function detectCollisionEnemyDown(){
                             }]
                             world = [
                     [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                    [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                    [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
-                    [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                    [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                    [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                    [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                    [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                    [800,xg3,15,xg1,xg3,w2,w1,xg3,xg5,w2,12,xg5,803],
-                    [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                    [800,wa1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,wa2,xg5,803],
+                    [800,xg1,wa1,wa2,wa2,xg1,xg2,xg5,wa3,xg1,wa2,xg2,803],
+                    [800,xg1,xg2,wa1,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                    [800,xg5,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,xg5,wa2,803],
+                    [800,xg4,wa5,wa3,wa5,xg2,wa2,xg5,xg4,xg5,xg4,xg5,803],
+                    [800,xg3,wa2,xg2,xg1,xg5,wa3,xg5,wa2,wa1,wa3,wa2,803],
+                    [800,xg2,xg5,wa1,xg1,wa2,wa1,xg3,xg4,wa1,xg5,xg5,803],
+                    [800,xg3,15,xg1,xg3,wa2,wa1,xg3,xg5,wa2,12,xg5,803],
+                    [800,xg4,xg5,xg5,wa3,wa4,wa2,wa1,xg5,xg3,xg5,xg1,803],
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];                   
                 cleared();
                 winnerScreen();
                         }
-    //Level 4
+    //Level 4 stage 4 world 4
     if(world[link_guy.y][link_guy.x] == 13){
         world.length = 0;
         floor += 1;
@@ -1419,12 +1415,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
     //random walls
 
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1458,15 +1454,15 @@ function detectCollisionEnemyDown(){
                             }]
                             world = [
                     [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                    [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                    [800,xg1,12,w2,w2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
-                    [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                    [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                    [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                    [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                    [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                    [800,xg3,xg2,xg1,xg3,w2,w1,xg3,xg5,w2,xg1,xg5,803],
-                    [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                    [800,wa1,xg1,wa5,xg5,xg4,xg3,xg4,wa5,xg1,xg1,xg5,803],
+                    [800,xg1,12,wa2,wa2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
+                    [800,xg1,xg2,wa1,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                    [800,xg5,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,wa5,xg3,803],
+                    [800,xg4,wa5,wa3,wa5,xg2,wa1,xg5,xg4,xg5,xg4,xg5,803],
+                    [800,xg3,wa2,wa2,xg1,xg5,wa3,xg5,xg5,wa1,wa2,wa2,803],
+                    [800,xg2,xg5,wa1,xg1,wa2,wa1,xg3,xg4,wa1,xg5,xg5,803],
+                    [800,xg3,xg2,xg1,xg3,wa2,wa1,xg3,xg5,wa2,xg1,xg5,803],
+                    [800,wa5,xg5,xg5,xg3,xg5,wa2,wa1,xg5,xg3,xg5,xg1,803],
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
@@ -1493,12 +1489,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
 
     //random walls
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1530,21 +1526,21 @@ function detectCollisionEnemyDown(){
                             }]
                         world = [
                     [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                    [800,w1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
-                    [800,xg3,xg4,xg5,xg2,xg5,w3,xg5,w1,xg5,12,xg5,803],
-                    [800,w3,w2,xg2,w3,w2,w2,xg2,xg5,w3,xg3,xg4,803],
-                    [800,xg5,w1,xg5,xg3,xg2,w3,w4,xg4,xg3,xg1,xg5,803],
-                    [800,xg1,w1,xg2,xg4,xg1,xg3,xg5,w4,xg5,xg5,xg4,803],
-                    [800,xg4,xg3,xg5,xg2,xg5,w1,xg4,xg5,w1,xg4,w4,803],
-                    [800,xg2,w2,w2,w1,w3,w1,xg1,xg5,w1,w3,xg4,803],
-                    [800,xg3,xg4,xg1,w1,w3,w2,w2,w1,xg1,5,xg5,803],
-                    [800,xg5,xg1,xg4,xg1,xg2,xg5,xg1,xg5,xg5,w4,xg2,803],
+                    [800,wa1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
+                    [800,xg3,xg4,xg5,xg2,xg5,wa3,xg5,wa1,xg5,12,xg5,803],
+                    [800,wa3,wa2,xg2,wa3,wa2,wa2,xg2,xg5,wa3,xg3,xg4,803],
+                    [800,xg5,wa1,xg5,xg3,xg2,wa3,wa4,xg4,xg3,xg1,xg5,803],
+                    [800,xg1,wa1,xg2,xg4,xg1,xg3,xg5,wa4,xg5,xg5,xg4,803],
+                    [800,xg4,xg3,xg5,xg2,xg5,wa1,xg4,xg5,wa1,xg4,wa4,803],
+                    [800,xg2,wa2,wa2,wa1,wa3,wa1,xg1,xg5,wa1,wa3,xg4,803],
+                    [800,xg3,xg4,xg1,wa1,wa3,wa2,wa2,wa1,xg1,5,xg5,803],
+                    [800,xg5,xg1,xg4,xg1,xg2,xg5,xg1,xg5,xg5,wa4,xg2,803],
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
                 winnerScreen();
                     }
-    //Level 3
+    //Level 3 stage 3 world 3
     if(world[link_guy.y][link_guy.x] == 15){
         world.length = 0;
         floor += 1;
@@ -1566,12 +1562,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
     //random walls
 
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1605,15 +1601,15 @@ function detectCollisionEnemyDown(){
                         }]
                         world = [
                 [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                [800,xg1,13,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
-                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                [800,xg3,12,xg1,xg3,w2,w1,xg3,xg5,w2,xg1,xg5,803],
-                [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                [800,wa1,xg1,xg5,xg5,xg4,xg3,xg4,wa3,xg1,xg1,xg5,803],
+                [800,xg1,13,wa2,wa2,xg1,xg2,xg5,xg2,xg1,wa4,xg2,803],
+                [800,xg1,xg2,xg2,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,wa2,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,xg5,xg3,803],
+                [800,xg4,wa5,wa3,wa5,xg2,wa1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,wa2,xg2,xg1,wa4,wa3,xg5,xg5,wa1,wa2,wa2,803],
+                [800,xg2,xg5,wa1,xg1,xg2,xg2,xg3,xg4,wa1,xg5,xg5,803],
+                [800,xg3,12,xg1,xg3,wa2,wa1,xg3,xg5,wa2,xg1,xg5,803],
+                [800,xg4,xg5,xg5,xg3,xg5,wa2,wa1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             cleared();
@@ -1714,7 +1710,7 @@ function detectCollisionEnemyDown(){
                     document.getElementById('link_guy').style.transform = "rotate(90deg)";
                     linkGuyHP = -250;
                 }
-// Level 2
+// Level 2 MOBILE world 2 MOBILE stage 2 MOBILE
     if(world[link_guy.y][link_guy.x] == 5){
         world.length = 0;
         floor += 1;
@@ -1736,12 +1732,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
     //random walls
 
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1774,21 +1770,21 @@ function detectCollisionEnemyDown(){
                             }]
                             world = [
                     [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                    [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                    [800,xg1,w1,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
-                    [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                    [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                    [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                    [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                    [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                    [800,xg3,15,xg1,xg3,w2,w1,xg3,xg5,w2,12,xg5,803],
-                    [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                    [800,wa1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,wa2,xg5,803],
+                    [800,xg1,wa1,wa2,wa2,xg1,xg2,xg5,wa3,xg1,wa2,xg2,803],
+                    [800,xg1,xg2,wa1,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                    [800,xg5,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,xg5,wa2,803],
+                    [800,xg4,wa5,wa3,wa5,xg2,wa2,xg5,xg4,xg5,xg4,xg5,803],
+                    [800,xg3,wa2,xg2,xg1,xg5,wa3,xg5,wa2,wa1,wa3,wa2,803],
+                    [800,xg2,xg5,wa1,xg1,wa2,wa1,xg3,xg4,wa1,xg5,xg5,803],
+                    [800,xg3,15,xg1,xg3,wa2,wa1,xg3,xg5,wa2,12,xg5,803],
+                    [800,xg4,xg5,xg5,wa3,wa4,wa2,wa1,xg5,xg3,xg5,xg1,803],
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];                   
                 cleared();
                 winnerScreen();
                         }
-    //Level 4
+    //Level 4 world 4 stage 4 MOBILE
     if(world[link_guy.y][link_guy.x] == 13){
         world.length = 0;
         floor += 1;
@@ -1809,12 +1805,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
     //random walls
 
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1848,21 +1844,21 @@ function detectCollisionEnemyDown(){
                             }]
                             world = [
                     [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                    [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                    [800,xg1,12,w2,w2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
-                    [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                    [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                    [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                    [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                    [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                    [800,xg3,xg2,xg1,xg3,w2,w1,xg3,xg5,w2,xg1,xg5,803],
-                    [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                    [800,wa1,xg1,wa5,xg5,xg4,xg3,xg4,wa5,xg1,xg1,xg5,803],
+                    [800,xg1,12,wa2,wa2,xg1,xg2,xg5,xg2,xg1,14,xg2,803],
+                    [800,xg1,xg2,wa1,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                    [800,xg5,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,wa5,xg3,803],
+                    [800,xg4,wa5,wa3,wa5,xg2,wa1,xg5,xg4,xg5,xg4,xg5,803],
+                    [800,xg3,wa2,wa2,xg1,xg5,wa3,xg5,xg5,wa1,wa2,wa2,803],
+                    [800,xg2,xg5,wa1,xg1,wa2,wa1,xg3,xg4,wa1,xg5,xg5,803],
+                    [800,xg3,xg2,xg1,xg3,wa2,wa1,xg3,xg5,wa2,xg1,xg5,803],
+                    [800,wa5,xg5,xg5,xg3,xg5,wa2,wa1,xg5,xg3,xg5,xg1,803],
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
                 winnerScreen();
                     }
-    //Level 5
+    //Level 5 MOBILE world 5 MOBILE stage 5 MOBILE
     if(world[link_guy.y][link_guy.x] == 14){
         world.length = 0;
         floor += 1;
@@ -1883,12 +1879,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
 
     //random walls
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1920,21 +1916,21 @@ function detectCollisionEnemyDown(){
                             }]
                         world = [
                     [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                    [800,w1,xg1,xg2,xg5,xg3,xg3,xg4,xg1,xg1,xg2,xg4,803],
-                    [800,xg3,xg4,xg5,xg2,xg5,w3,xg5,w1,xg5,12,xg5,803],
-                    [800,w3,w2,xg2,w3,w2,w2,xg2,xg5,w3,xg3,xg4,803],
-                    [800,xg5,w1,xg5,xg3,xg2,w3,w4,xg4,xg3,xg1,xg5,803],
-                    [800,xg1,w1,xg2,xg4,xg1,xg3,xg5,w4,xg5,xg5,xg4,803],
-                    [800,xg4,xg3,xg5,xg2,xg5,w1,xg4,xg5,w1,xg4,w4,803],
-                    [800,xg2,w2,w2,w1,w3,w1,xg1,xg5,w1,w3,xg4,803],
-                    [800,xg3,xg4,xg1,w1,w3,w2,w2,w1,xg1,5,xg5,803],
-                    [800,xg5,xg1,xg4,xg1,xg2,xg5,xg1,xg5,xg5,w4,xg2,803],
+                    [800,wa1,xg1,xg2,xg5,xg3,wa1,xg4,xg1,wa4,xg2,xg4,803],
+                    [800,xg3,xg4,xg5,xg2,xg5,xg3,xg5,wa1,xg5,12,wa1,803],
+                    [800,wa3,wa2,xg2,wa3,wa2,wa2,xg2,xg5,wa3,xg3,xg4,803],
+                    [800,xg5,wa1,xg5,xg3,xg2,wa3,wa4,xg4,xg3,xg1,wa2,803],
+                    [800,xg1,wa1,xg2,xg4,xg1,xg3,xg5,wa4,xg5,xg5,xg4,803],
+                    [800,xg4,wa2,wa3,wa4,wa5,wa1,xg4,xg5,wa1,xg4,wa4,803],
+                    [800,xg2,xg1,xg2,xg3,xg3,xg2,xg1,xg5,wa1,wa3,wa1,803],
+                    [800,xg3,xg4,xg1,wa1,wa3,wa2,wa2,wa1,xg1,5,xg5,803],
+                    [800,xg5,xg1,xg4,xg1,xg2,xg5,xg1,xg5,xg5,wa4,xg2,803],
                     [807,804,804,804,804,804,804,804,804,804,804,804,806]
                 ];
                 cleared();
                 winnerScreen();
                     }
-    //Level 3
+    //Level 3 MOBILE stage 3 MOBILE world 3 MOBILE
     if(world[link_guy.y][link_guy.x] == 15){
         world.length = 0;
         floor += 1;
@@ -1956,12 +1952,12 @@ function detectCollisionEnemyDown(){
     x5 = worldGem[Math.floor(Math.random()*worldGem.length)];
     //random walls
 
-    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801);
-    w1 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w2 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w3 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w4 = worldWall[Math.floor(Math.random()*worldWall.length)];
-    w5 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    worldWall = Array(801, 10, 801, 0, 8, 12, 801, 801, 801, 12);
+    wa1 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa2 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa3 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa4 = worldWall[Math.floor(Math.random()*worldWall.length)];
+    wa5 = worldWall[Math.floor(Math.random()*worldWall.length)];
 
     //random stairs
     worldStairs = Array(5, 6, 7, 13, 14, 15);
@@ -1995,15 +1991,15 @@ function detectCollisionEnemyDown(){
                         }]
                         world = [
                 [810,802,802,802,802,802,802,802,802,802,802,802,805],
-                [800,w1,xg1,xg5,xg5,xg4,xg3,xg4,xg5,xg1,xg1,xg5,803],
-                [800,xg1,13,w2,w2,xg1,xg2,xg5,xg2,xg1,xg4,xg2,803],
-                [800,xg1,xg2,w1,xg1,xg2,w2,xg5,xg3,xg5,xg4,xg5,803],
-                [800,xg5,xg2,w3,xg5,xg2,w1,w3,w3,w2,xg5,xg3,803],
-                [800,xg4,w5,w3,w5,xg2,w1,xg5,xg4,xg5,xg4,xg5,803],
-                [800,xg3,w2,xg2,xg1,xg5,w3,xg5,xg5,w1,w2,w2,803],
-                [800,xg2,xg5,w1,xg1,w2,w1,xg3,xg4,w1,xg5,xg5,803],
-                [800,xg3,12,xg1,xg3,w2,w1,xg3,xg5,w2,xg1,xg5,803],
-                [800,xg4,xg5,xg5,xg3,xg5,w2,w1,xg5,xg3,xg5,xg1,803],
+                [800,wa1,xg1,xg5,xg5,xg4,xg3,xg4,wa3,xg1,xg1,xg5,803],
+                [800,xg1,13,wa2,wa2,xg1,xg2,xg5,xg2,xg1,wa4,xg2,803],
+                [800,xg1,xg2,xg2,xg1,xg2,wa2,xg5,xg3,xg5,xg4,xg5,803],
+                [800,wa2,xg2,wa3,xg5,xg2,wa1,wa3,wa3,wa2,xg5,xg3,803],
+                [800,xg4,wa5,wa3,wa5,xg2,wa1,xg5,xg4,xg5,xg4,xg5,803],
+                [800,xg3,wa2,xg2,xg1,wa4,wa3,xg5,xg5,wa1,wa2,wa2,803],
+                [800,xg2,xg5,wa1,xg1,xg2,xg2,xg3,xg4,wa1,xg5,xg5,803],
+                [800,xg3,12,xg1,xg3,wa2,wa1,xg3,xg5,wa2,xg1,xg5,803],
+                [800,xg4,xg5,xg5,xg3,xg5,wa2,wa1,xg5,xg3,xg5,xg1,803],
                 [807,804,804,804,804,804,804,804,804,804,804,804,806]
             ];
             cleared();
