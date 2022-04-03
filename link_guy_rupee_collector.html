@@ -447,6 +447,7 @@
     @media only screen
     and (min-device-width : 320px)
     and (max-device-width : 480px){
+
     button#upButton{
             background: url('images/up_arrow_test.jpg');
             border:1px solid white;
@@ -456,7 +457,7 @@
             width: 150px;
             height: 150px;
             position: absolute;
-            top: 725px;
+            top: 735px;
             left: 460px;
             touch-action: manipulation;
         }
@@ -521,9 +522,9 @@
             touch-action: manipulation;
         }
         #controllerArea{
-            visibility: hidden;
-            width: 800px;
-            height: 600px;
+            width: 782px;
+            height: 570px;
+            border:5px solid rgba(255, 255, 255, 0.521);
             position: absolute;
             top: 722px;
             left: 0px;
@@ -582,12 +583,12 @@
                 <button id="startGameButton" onClick="displayStartGameButton()">Click here to start!</button>
             </div>
             <div>
+                <div id="controllerArea"></div>
                 <button id="upButton"></button>
                 <button id="downButton" ></button>
                 <button id="leftButton" ></button>
                 <button id="rightButton"></button>
                 <button id="spaceBarButton" onClick="spacebarButtonTouch()"></button>
-                <button id="controllerArea"></button>
             </div>
             <p id="demo"></p>
         </div>
