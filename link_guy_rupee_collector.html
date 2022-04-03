@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0">
         <title>Document</title>
     <style type="text/css">
         body{
@@ -15,12 +15,14 @@
         background-size: 720px 600px;
             margin: 0px;
             font-size: 0;
+            touch-action: manipulation;
         }
 
         div.row div{
             width:60px;
             height: 60px;
             display:inline-block;
+            touch-action: manipulation;
         }
         
         div.stairs{
@@ -28,62 +30,74 @@
             background-repeat: no-repeat;
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
     
         div.empty{
             background-position: center;
+            touch-action: manipulation;
         }
 
         div.left_wall{
             background-color: rgb(70, 70, 87);
             background: url("images/left_wall.jpg");
+            touch-action: manipulation;
         }
 
         div.top_wall{
             background-color: rgb(70, 70, 87);
             background: url("images/top_wall.jpg");
+            touch-action: manipulation;
         }
 
         div.bottom_wall{
             background-color: rgb(70, 70, 87);
             background: url("images/bottom_wall.jpg");
+            touch-action: manipulation;
         }
 
         div.right_wall{
             background-color: rgb(70, 70, 87);
             background: url("images/right_wall.jpg");
+            touch-action: manipulation;
         }
 
         div.top_right_pillar{
             background-color: rgb(70, 70, 87);
             background: url("images/top_right_pillar.jpg");
+            touch-action: manipulation;
         }
 
         div.top_left_pillar{
             background-color: rgb(70, 70, 87);
             background: url("images/top_left_pillar.jpg");
+            touch-action: manipulation;
         }
 
         div.bottom_right_pillar{
             background-color: rgb(70, 70, 87);
             background: url("images/bottom_right_pillar.jpg");
+            touch-action: manipulation;
         }
 
         div.bottom_left_pillar{
             background-color: rgb(70, 70, 87);
             background: url("images/bottom_left_pillar.jpg");
+            touch-action: manipulation;
         }
 
         div.brown_pillar{
             background: url("images/brown_pillar_1.jpg");
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
 
         div.pit_fall{
             background: url("images/pitfall_1.jpg");
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
         
         div.purple_rupee{
@@ -91,6 +105,7 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+            touch-action: manipulation;
         }
 
         div.blue_rupee{
@@ -98,6 +113,7 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+            touch-action: manipulation;
         }
 
         div.green_rupee{
@@ -105,18 +121,21 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+            touch-action: manipulation;
         }
         div.red_rupee{
             background: url("images/red_rupee_spin.gif");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+            touch-action: manipulation;
         }
         div.yellow_rupee{
             background: url("images/yellow_rupee_spin.gif");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+            touch-action: manipulation;
         }
 
         div#link_guy{
@@ -127,6 +146,7 @@
             width: 60px;
             height: 60px;
             position: absolute;
+            touch-action: manipulation;
         }
 
         div.shop_guy{
@@ -136,6 +156,7 @@
             background-size: cover;
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
 
         div.shop_fire{
@@ -145,6 +166,7 @@
             background-size: cover;
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
 
         div.shop_heart{
@@ -154,6 +176,7 @@
             background-size: cover;
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
 
         div.blue_shard{
@@ -163,6 +186,7 @@
             background-size: cover;
             width: 60px;
             height: 60px;
+            touch-action: manipulation;
         }
 
         div.heart_200{
@@ -172,6 +196,7 @@
             background-size: cover;
             color: rgb(17, 5, 6);
             font-size: 25px;
+            touch-action: manipulation;
         }
 
         div.shard_500{
@@ -181,6 +206,7 @@
             background-size: cover;
             color: rgb(17, 5, 6);
             font-size: 25px;
+            touch-action: manipulation;
         }
 
         div#score{
@@ -194,6 +220,7 @@
             left : 85px;
             top: 660px;
             position: absolute;
+            touch-action: manipulation;
         }
 
         div#linkGuyHP{
@@ -207,6 +234,7 @@
             left:0px;
             top: 660px;
             position: absolute;
+            touch-action: manipulation;
         }
 
         div#kills{
@@ -220,6 +248,7 @@
             left: 170px;
             top: 660px;
             position: absolute;
+            touch-action: manipulation;
         }
 
         div#floor{
@@ -233,6 +262,7 @@
             left: 255px;
             top: 660px;
             position: absolute;
+            touch-action: manipulation;
         }
 
         div#shards{
@@ -246,6 +276,7 @@
             left: 340px;
             top: 660px;
             position: absolute;
+            touch-action: manipulation;
         }
 
         div#startGame{
@@ -262,6 +293,7 @@
             outline-color: blue;
             position: absolute;
             top: 0px;
+
         }
 
         button#startGameButton{
@@ -274,6 +306,7 @@
             position: absolute;
             top: 400px;
             left: 320px;
+            touch-action: manipulation;
         }
 
         div#finalScore{
@@ -303,6 +336,7 @@
             position: absolute;
             top: 260px;
             left: 320px;
+            touch-action: manipulation;
         }
 
         .attackUp{
@@ -315,6 +349,7 @@
 		position:absolute;
         transform: rotate(135deg);
         margin-left: 7px;
+        touch-action: manipulation;
         }
 
         .attackRight{
@@ -327,6 +362,7 @@
 		position:absolute;
         transform: rotate(-135deg);
         margin-top: 7px;
+        touch-action: manipulation;
         }
 
         .attackLeft{
@@ -339,6 +375,7 @@
 		position:absolute;
         transform: rotate(45deg);
         margin-top: 7px;
+        touch-action: manipulation;
         }
 
         .attackDown{
@@ -351,6 +388,7 @@
 		position:absolute;
         transform: rotate(-45deg);
         margin-left: 7px;
+        touch-action: manipulation;
         }
 
         .enemy1{
@@ -361,6 +399,7 @@
 		width:60px;
 		height:60px;
 		position:absolute;
+        touch-action: manipulation;
 	}
 	.enemy2{
 		background: url('images/bat_flapping.gif');
@@ -370,6 +409,7 @@
 		width:60px;
 		height:60px;
 		position:absolute;
+        touch-action: manipulation;
 	}
         
 	.explosion{
@@ -380,6 +420,7 @@
 		width: 64px;
 		height: 64px;
 		position: absolute;
+        touch-action: manipulation;
 	}
 
     .bloodBurst{
@@ -400,6 +441,7 @@
             background-size: cover;
         width: 800px;
         height: 680px;
+
     }
 
     @media only screen
@@ -416,6 +458,7 @@
             position: absolute;
             top: 725px;
             left: 460px;
+            touch-action: manipulation;
         }
         button#downButton{
             background: url('images/down_arrow_test.jpg');
@@ -430,6 +473,7 @@
             position: absolute;
             top: 900px;
             left: 460px;
+            touch-action: manipulation;
         }
         button#leftButton{
             background: url('images/left_arrow_test.jpg');
@@ -444,6 +488,7 @@
             position: absolute;
             top: 820px;
             left: 300px;
+            touch-action: manipulation;
         }
         button#rightButton{
             background: url('images/right_arrow_test.jpg');
@@ -458,6 +503,7 @@
             position: absolute;
             top: 820px;
             left: 620px;
+            touch-action: manipulation;
         }
         button#spaceBarButton{
             background: url('images/space_bar_button.png');
@@ -472,6 +518,16 @@
             position: absolute;
             top: 1100px;
             left: 120px;
+            touch-action: manipulation;
+        }
+        #controllerArea{
+            visibility: hidden;
+            width: 800px;
+            height: 600px;
+            position: absolute;
+            top: 722px;
+            left: 0px;
+            touch-action: manipulation;
         }
     }
 
@@ -531,6 +587,7 @@
                 <button id="leftButton" ></button>
                 <button id="rightButton"></button>
                 <button id="spaceBarButton" onClick="spacebarButtonTouch()"></button>
+                <button id="controllerArea"></button>
             </div>
             <p id="demo"></p>
         </div>
